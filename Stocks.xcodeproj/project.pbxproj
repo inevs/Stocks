@@ -8,11 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		26C86D7425B1E7CC00293024 /* StocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86D7325B1E7CC00293024 /* StocksApp.swift */; };
-		26C86D7625B1E7CC00293024 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86D7525B1E7CC00293024 /* ContentView.swift */; };
 		26C86D7825B1E7CD00293024 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C86D7725B1E7CD00293024 /* Assets.xcassets */; };
 		26C86D7B25B1E7CD00293024 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C86D7A25B1E7CD00293024 /* Preview Assets.xcassets */; };
 		26C86D8625B1E7CD00293024 /* StocksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86D8525B1E7CD00293024 /* StocksTests.swift */; };
 		26C86D9125B1E7CD00293024 /* StocksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86D9025B1E7CD00293024 /* StocksUITests.swift */; };
+		26C86DA225B1F6CA00293024 /* Depot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DA125B1F6CA00293024 /* Depot.swift */; };
+		26C86DAA25B1F6E300293024 /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DA925B1F6E300293024 /* Money.swift */; };
+		26C86DB025B1F78900293024 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DAF25B1F78900293024 /* TestData.swift */; };
+		26C86DBD25B1F7D100293024 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DBC25B1F7D100293024 /* PortfolioView.swift */; };
+		26C86DC525B1F88B00293024 /* DepotListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DC425B1F88B00293024 /* DepotListRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +39,6 @@
 /* Begin PBXFileReference section */
 		26C86D7025B1E7CC00293024 /* Stocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C86D7325B1E7CC00293024 /* StocksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksApp.swift; sourceTree = "<group>"; };
-		26C86D7525B1E7CC00293024 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		26C86D7725B1E7CD00293024 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26C86D7A25B1E7CD00293024 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		26C86D7C25B1E7CD00293024 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +48,11 @@
 		26C86D8C25B1E7CD00293024 /* StocksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StocksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C86D9025B1E7CD00293024 /* StocksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksUITests.swift; sourceTree = "<group>"; };
 		26C86D9225B1E7CD00293024 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26C86DA125B1F6CA00293024 /* Depot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Depot.swift; sourceTree = "<group>"; };
+		26C86DA925B1F6E300293024 /* Money.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
+		26C86DAF25B1F78900293024 /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		26C86DBC25B1F7D100293024 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
+		26C86DC425B1F88B00293024 /* DepotListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepotListRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,11 +103,14 @@
 		26C86D7225B1E7CC00293024 /* Stocks */ = {
 			isa = PBXGroup;
 			children = (
+				26C86D7925B1E7CD00293024 /* Preview Content */,
 				26C86D7325B1E7CC00293024 /* StocksApp.swift */,
-				26C86D7525B1E7CC00293024 /* ContentView.swift */,
 				26C86D7725B1E7CD00293024 /* Assets.xcassets */,
 				26C86D7C25B1E7CD00293024 /* Info.plist */,
-				26C86D7925B1E7CD00293024 /* Preview Content */,
+				26C86DB425B1F78D00293024 /* Mock */,
+				26C86DBB25B1F7BC00293024 /* PortfolioView */,
+				26C86DA125B1F6CA00293024 /* Depot.swift */,
+				26C86DA925B1F6E300293024 /* Money.swift */,
 			);
 			path = Stocks;
 			sourceTree = "<group>";
@@ -128,6 +139,23 @@
 				26C86D9225B1E7CD00293024 /* Info.plist */,
 			);
 			path = StocksUITests;
+			sourceTree = "<group>";
+		};
+		26C86DB425B1F78D00293024 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				26C86DAF25B1F78900293024 /* TestData.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		26C86DBB25B1F7BC00293024 /* PortfolioView */ = {
+			isa = PBXGroup;
+			children = (
+				26C86DBC25B1F7D100293024 /* PortfolioView.swift */,
+				26C86DC425B1F88B00293024 /* DepotListRow.swift */,
+			);
+			path = PortfolioView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +287,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26C86D7625B1E7CC00293024 /* ContentView.swift in Sources */,
+				26C86DBD25B1F7D100293024 /* PortfolioView.swift in Sources */,
+				26C86DC525B1F88B00293024 /* DepotListRow.swift in Sources */,
 				26C86D7425B1E7CC00293024 /* StocksApp.swift in Sources */,
+				26C86DAA25B1F6E300293024 /* Money.swift in Sources */,
+				26C86DB025B1F78900293024 /* TestData.swift in Sources */,
+				26C86DA225B1F6CA00293024 /* Depot.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
