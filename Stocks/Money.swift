@@ -1,6 +1,6 @@
 import Foundation
 
-struct Money {
+struct Money: Codable {
     let amount: Decimal
     
     init(amount: Decimal) {
