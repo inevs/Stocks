@@ -2,12 +2,17 @@ import SwiftUI
 
 @main
 struct StocksApp: App {
-    @State private var depots = testDepots
+    @ObservedObject var data = DepotData()
     
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                PortfolioView(depots: $depots)
+                PortfolioView(depots: $data.depots) {
+                    data.save()
+                }
+            }
+            .onAppear {
+                data.load()
             }
         }
     }

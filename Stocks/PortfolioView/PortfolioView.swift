@@ -2,9 +2,11 @@ import SwiftUI
 
 struct PortfolioView: View {
     @Binding var depots: [Depot]
+    @Environment(\.scenePhase) private var scenePhase
     @State private var isPresented = false
     @State private var newDepotData = Depot.Data()
-    
+    let saveAction: () -> Void
+
     var body: some View {
         List {
             ForEach(depots) { depot in
@@ -29,13 +31,16 @@ struct PortfolioView: View {
                     )
             }
         }
+        .onChange(of: scenePhase) { phase in
+            if phase == .inactive { saveAction() }
+        }
     }
 }
 
 struct PortfolioView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PortfolioView(depots: .constant(testDepots))
+            PortfolioView(depots: .constant(testDepots), saveAction: {})
         }
     }
 }
