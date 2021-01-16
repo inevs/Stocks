@@ -25,12 +25,15 @@ struct SearchSecurityView: View {
             }
             Section {
                 ForEach(searchResult) { result in
-                    VStack(alignment: .leading) {
-                        Text(result.name)
-                            .font(.headline)
-                        Text(result.symbol)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
+                    NavigationLink(
+                        destination: SecurityView(securityDetails: SecurityDetails(symbol: result.symbol, name: result.name))) {
+                        VStack(alignment: .leading) {
+                            Text(result.name)
+                                .font(.headline)
+                            Text(result.symbol)
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
                     }
                 }
             }

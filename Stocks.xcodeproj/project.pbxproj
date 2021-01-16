@@ -24,6 +24,7 @@
 		26C86DEE25B2F66B00293024 /* SecurityAllocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DEC25B2F66B00293024 /* SecurityAllocation.swift */; };
 		26C86DEF25B2F66B00293024 /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DED25B2F66B00293024 /* Security.swift */; };
 		26C86DF525B303F800293024 /* SearchSecurityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DF425B303F800293024 /* SearchSecurityView.swift */; };
+		26C86DFA25B3079A00293024 /* SecurityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DF925B3079A00293024 /* SecurityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		26C86DEC25B2F66B00293024 /* SecurityAllocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityAllocation.swift; sourceTree = "<group>"; };
 		26C86DED25B2F66B00293024 /* Security.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Security.swift; sourceTree = "<group>"; };
 		26C86DF425B303F800293024 /* SearchSecurityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSecurityView.swift; sourceTree = "<group>"; };
+		26C86DF925B3079A00293024 /* SecurityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				26C86DF425B303F800293024 /* SearchSecurityView.swift */,
+				26C86DF925B3079A00293024 /* SecurityView.swift */,
 			);
 			path = SecurityView;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				26C86D7425B1E7CC00293024 /* StocksApp.swift in Sources */,
 				26C86DAA25B1F6E300293024 /* Money.swift in Sources */,
 				26C86DF525B303F800293024 /* SearchSecurityView.swift in Sources */,
+				26C86DFA25B3079A00293024 /* SecurityView.swift in Sources */,
 				26C86DB025B1F78900293024 /* TestData.swift in Sources */,
 				26C86DA225B1F6CA00293024 /* Depot.swift in Sources */,
 				26C86DEE25B2F66B00293024 /* SecurityAllocation.swift in Sources */,
