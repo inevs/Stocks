@@ -18,7 +18,7 @@ struct PortfolioView: View {
     var body: some View {
         List {
             ForEach(depots) { depot in
-                NavigationLink(destination: DepotView(depot: binding(for: depot))) {
+                NavigationLink(destination: DepotView(depot: depot)) {
                     DepotListRow(depot: depot)
                 }
             }

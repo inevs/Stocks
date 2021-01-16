@@ -38,7 +38,9 @@ struct SecurityView: View {
 
 struct SecurityView_Previews: PreviewProvider {
     static var previews: some View {
-        SecurityView(securityDetails: SecurityDetails(symbol: "AAPL", name: "Apple"))
+        NavigationView {
+            SecurityView(securityDetails: SecurityDetails(symbol: "AAPL", name: "Apple"))
+        }
     }
 }
 

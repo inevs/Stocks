@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct DepotView: View {
-    @Binding var depot: Depot
+    let depot: Depot
     
     var body: some View {
         VStack {
@@ -9,7 +9,9 @@ struct DepotView: View {
                 ChangesView()
                 Spacer()
                 ForEach(depot.securityAllocations) { securityAllocation in
-                    SecurityRow(securityAllocation: securityAllocation)
+                    NavigationLink(destination: SecurityView(securityDetails: SecurityDetails(symbol: securityAllocation.security.symbol, name: securityAllocation.security.name))) {
+                        SecurityRow(securityAllocation: securityAllocation)
+                    }
                 }
             }
             .listStyle(InsetGroupedListStyle())
@@ -21,7 +23,7 @@ struct DepotView: View {
 struct DepotView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            DepotView(depot: .constant(comdirect))
+            DepotView(depot: comdirect)
         }
     }
 }
