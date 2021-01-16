@@ -10,11 +10,14 @@ struct PortfolioView: View {
     var body: some View {
         List {
             ForEach(depots) { depot in
-                DepotListRow(depot: depot)
+                NavigationLink(destination: DepotView(depot: depot)) {
+                    DepotListRow(depot: depot)
+                }
             }
             .onDelete { indices in
                 depots.remove(atOffsets: indices)
             }
+            Spacer()
             TotalRow(depots: depots)
         }
         .navigationTitle(Text("Depots"))

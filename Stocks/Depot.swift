@@ -4,6 +4,7 @@ struct Depot: Identifiable, Codable {
     let id: UUID
     var name: String
     var cash: Money
+    var securityAllocations: [SecurityAllocation] = []
     
     init(id: UUID = UUID(), name: String, cash: Money) {
         self.id = id
@@ -28,6 +29,7 @@ extension Depot {
         self.id = UUID()
         self.name = data.name
         self.cash = Money(from: data.cash)
+        self.securityAllocations = []
     }
     
     var data: Data {

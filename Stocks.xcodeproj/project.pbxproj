@@ -20,6 +20,9 @@
 		26C86DD425B1FB3B00293024 /* DepotEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DD325B1FB3B00293024 /* DepotEditView.swift */; };
 		26C86DDA25B2015D00293024 /* DepotData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DD925B2015D00293024 /* DepotData.swift */; };
 		26C86DE225B2F28E00293024 /* TotalRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DE125B2F28E00293024 /* TotalRow.swift */; };
+		26C86DE825B2F3A000293024 /* DepotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DE725B2F3A000293024 /* DepotView.swift */; };
+		26C86DEE25B2F66B00293024 /* SecurityAllocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DEC25B2F66B00293024 /* SecurityAllocation.swift */; };
+		26C86DEF25B2F66B00293024 /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DED25B2F66B00293024 /* Security.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,9 @@
 		26C86DD325B1FB3B00293024 /* DepotEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepotEditView.swift; sourceTree = "<group>"; };
 		26C86DD925B2015D00293024 /* DepotData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepotData.swift; sourceTree = "<group>"; };
 		26C86DE125B2F28E00293024 /* TotalRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotalRow.swift; sourceTree = "<group>"; };
+		26C86DE725B2F3A000293024 /* DepotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepotView.swift; sourceTree = "<group>"; };
+		26C86DEC25B2F66B00293024 /* SecurityAllocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityAllocation.swift; sourceTree = "<group>"; };
+		26C86DED25B2F66B00293024 /* Security.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Security.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +121,11 @@
 				26C86D7C25B1E7CD00293024 /* Info.plist */,
 				26C86DB425B1F78D00293024 /* Mock */,
 				26C86DBB25B1F7BC00293024 /* PortfolioView */,
+				26C86DE625B2F38C00293024 /* DepotView */,
 				26C86DA125B1F6CA00293024 /* Depot.swift */,
 				26C86DA925B1F6E300293024 /* Money.swift */,
+				26C86DED25B2F66B00293024 /* Security.swift */,
+				26C86DEC25B2F66B00293024 /* SecurityAllocation.swift */,
 				26C86DD925B2015D00293024 /* DepotData.swift */,
 			);
 			path = Stocks;
@@ -165,6 +174,14 @@
 				26C86DE125B2F28E00293024 /* TotalRow.swift */,
 			);
 			path = PortfolioView;
+			sourceTree = "<group>";
+		};
+		26C86DE625B2F38C00293024 /* DepotView */ = {
+			isa = PBXGroup;
+			children = (
+				26C86DE725B2F3A000293024 /* DepotView.swift */,
+			);
+			path = DepotView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,10 +318,13 @@
 				26C86DD425B1FB3B00293024 /* DepotEditView.swift in Sources */,
 				26C86DC525B1F88B00293024 /* DepotListRow.swift in Sources */,
 				26C86DE225B2F28E00293024 /* TotalRow.swift in Sources */,
+				26C86DEF25B2F66B00293024 /* Security.swift in Sources */,
+				26C86DE825B2F3A000293024 /* DepotView.swift in Sources */,
 				26C86D7425B1E7CC00293024 /* StocksApp.swift in Sources */,
 				26C86DAA25B1F6E300293024 /* Money.swift in Sources */,
 				26C86DB025B1F78900293024 /* TestData.swift in Sources */,
 				26C86DA225B1F6CA00293024 /* Depot.swift in Sources */,
+				26C86DEE25B2F66B00293024 /* SecurityAllocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
