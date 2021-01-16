@@ -14,3 +14,13 @@ let testDepots: [Depot] = [
     comdirect,
     Depot(name: "Ing", cash: Money(amount: 123.67)),
 ]
+
+let securitySearchResult = [
+    SecurityQueryResult(symbol: "AAPL", name: "Apple"),
+    SecurityQueryResult(symbol: "MSFT", name: "Microsoft"),
+    SecurityQueryResult(symbol: "GGGG", name: "sjjsjkd kdd"),
+    SecurityQueryResult(symbol: "HHHH", name: "jjsjs jsjjs"),
+    SecurityQueryResult(symbol: "KKKK", name: "fjiijs"),
+    SecurityQueryResult(symbol: "MMMM", name: "hsushduus"),
+]
+

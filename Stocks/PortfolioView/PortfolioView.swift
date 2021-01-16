@@ -64,11 +64,10 @@ struct PortfolioView: View {
     }
     
     var searchView: some View {
-        VStack {
-            Text("Search")
-            Button(action: { presentedSheet = nil}) {
-                Text("Dismiss")
-            }
+        NavigationView {
+            SearchSecurityView()
+                .navigationBarTitle(Text("Search Security"), displayMode: .inline)
+                .navigationBarItems(leading: Button(action: { presentedSheet = nil }) {Text("Dismiss")})
         }
     }
     
