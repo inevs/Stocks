@@ -10,7 +10,7 @@ struct PortfolioView: View {
     var body: some View {
         List {
             ForEach(depots) { depot in
-                NavigationLink(destination: DepotView(depot: depot)) {
+                NavigationLink(destination: DepotView(depot: binding(for: depot))) {
                     DepotListRow(depot: depot)
                 }
             }
@@ -41,6 +41,13 @@ struct PortfolioView: View {
         .onChange(of: scenePhase) { phase in
             if phase == .inactive { saveAction() }
         }
+    }
+    
+    private func binding(for depot: Depot) -> Binding<Depot> {
+        guard let depotIndex = depots.firstIndex(where: { $0.id == depot.id }) else {
+            fatalError("Can't find depot in array")
+        }
+        return $depots[depotIndex]
     }
 }
 

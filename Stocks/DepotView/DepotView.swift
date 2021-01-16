@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct DepotView: View {
-    let depot: Depot
+    @Binding var depot: Depot
     
     var body: some View {
         VStack {
@@ -21,7 +21,7 @@ struct DepotView: View {
 struct DepotView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            DepotView(depot: comdirect)
+            DepotView(depot: .constant(comdirect))
         }
     }
 }
