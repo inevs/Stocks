@@ -14,7 +14,8 @@ struct PortfolioView: View {
             }
             .onDelete { indices in
                 depots.remove(atOffsets: indices)
-            }            
+            }
+            TotalRow(depots: depots)
         }
         .navigationTitle(Text("Depots"))
         .navigationBarItems(trailing: Button(action: { isPresented = true }) {

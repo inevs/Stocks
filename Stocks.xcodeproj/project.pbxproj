@@ -19,6 +19,7 @@
 		26C86DC525B1F88B00293024 /* DepotListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DC425B1F88B00293024 /* DepotListRow.swift */; };
 		26C86DD425B1FB3B00293024 /* DepotEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DD325B1FB3B00293024 /* DepotEditView.swift */; };
 		26C86DDA25B2015D00293024 /* DepotData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DD925B2015D00293024 /* DepotData.swift */; };
+		26C86DE225B2F28E00293024 /* TotalRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DE125B2F28E00293024 /* TotalRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		26C86DC425B1F88B00293024 /* DepotListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepotListRow.swift; sourceTree = "<group>"; };
 		26C86DD325B1FB3B00293024 /* DepotEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepotEditView.swift; sourceTree = "<group>"; };
 		26C86DD925B2015D00293024 /* DepotData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepotData.swift; sourceTree = "<group>"; };
+		26C86DE125B2F28E00293024 /* TotalRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotalRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 				26C86DBC25B1F7D100293024 /* PortfolioView.swift */,
 				26C86DC425B1F88B00293024 /* DepotListRow.swift */,
 				26C86DD325B1FB3B00293024 /* DepotEditView.swift */,
+				26C86DE125B2F28E00293024 /* TotalRow.swift */,
 			);
 			path = PortfolioView;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				26C86DBD25B1F7D100293024 /* PortfolioView.swift in Sources */,
 				26C86DD425B1FB3B00293024 /* DepotEditView.swift in Sources */,
 				26C86DC525B1F88B00293024 /* DepotListRow.swift in Sources */,
+				26C86DE225B2F28E00293024 /* TotalRow.swift in Sources */,
 				26C86D7425B1E7CC00293024 /* StocksApp.swift in Sources */,
 				26C86DAA25B1F6E300293024 /* Money.swift in Sources */,
 				26C86DB025B1F78900293024 /* TestData.swift in Sources */,
