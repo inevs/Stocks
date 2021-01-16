@@ -1,6 +1,6 @@
 import Foundation
 
-struct SecurityAllocation: Codable {
+struct SecurityAllocation: Identifiable, Codable {
     let id: UUID
     let amount: Decimal
     let security: Security

@@ -4,12 +4,13 @@ struct Depot: Identifiable, Codable {
     let id: UUID
     var name: String
     var cash: Money
-    var securityAllocations: [SecurityAllocation] = []
+    var securityAllocations: [SecurityAllocation]
     
-    init(id: UUID = UUID(), name: String, cash: Money) {
+    init(id: UUID = UUID(), name: String, cash: Money, securityAllocations: [SecurityAllocation] = []) {
         self.id = id
         self.name = name
         self.cash = cash
+        self.securityAllocations = securityAllocations
     }
 }
 

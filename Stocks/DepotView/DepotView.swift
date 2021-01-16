@@ -8,15 +8,8 @@ struct DepotView: View {
             List {
                 ChangesView()
                 Spacer()
-                HStack {
-                    Text("50 Apple")
-                    Spacer()
-                    Text("104.99 EUR")
-                }
-                HStack {
-                    Text("6 Tesla")
-                    Spacer()
-                    Text("825.17 EUR")
+                ForEach(depot.securityAllocations) { securityAllocation in
+                    SecurityRow(securityAllocation: securityAllocation)
                 }
             }
             .listStyle(InsetGroupedListStyle())
@@ -37,33 +30,50 @@ struct ChangesView: View {
     var body: some View {
         HStack {
             HStack {
-                VStack {
-                    Text("Today")
-                    HStack {
-                        Text("+237,00 EUR")
-                        Text("+10 %")
-                    }
-                    .font(.caption)
-                }
+                PeriodView(period: .day)
                 Divider()
-                VStack {
-                    Text("This Month")
-                    HStack {
-                        Text("+437,00 EUR")
-                        Text("+11 %")
-                    }
-                    .font(.caption)
-                }
+                PeriodView(period: .month)
                 Divider()
-                VStack {
-                    Text("This year")
-                    HStack {
-                        Text("+1237,00 EUR")
-                        Text("+13 %")
-                    }
-                    .font(.caption)
-                }
+                PeriodView(period: .year)
             }
         }
     }
+}
+
+struct SecurityRow: View {
+    let securityAllocation: SecurityAllocation
+    
+    var body: some View {
+        HStack {
+            Text("\(securityAllocation.amount.string()) \(securityAllocation.security.name)")
+            Spacer()
+            Text("\((securityAllocation.amount * securityAllocation.security.price).string())")
+        }
+    }
+}
+
+struct PeriodView: View {
+    let period: Period
+    
+    var body: some View {
+        VStack {
+            switch period {
+            case .day:
+                Text("Today")
+            case .month:
+                Text("This Month")
+            case .year:
+                Text("This Year")
+            }
+            HStack {
+                Text("+237,00 EUR")
+                Text("+10 %")
+            }
+            .font(.caption)
+        }
+    }
+}
+
+enum Period {
+    case day, month, year
 }
