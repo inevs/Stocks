@@ -1,9 +1,17 @@
 import SwiftUI
 
+enum ActiveSheet: Identifiable {
+    case edit, search
+
+    var id: Int {
+        hashValue
+    }
+}
+
 struct PortfolioView: View {
     @Binding var depots: [Depot]
     @Environment(\.scenePhase) private var scenePhase
-    @State private var isPresented = false
+    @State private var presentedSheet: ActiveSheet?
     @State private var newDepotData = Depot.Data()
     let saveAction: () -> Void
 
@@ -21,25 +29,46 @@ struct PortfolioView: View {
             TotalRow(depots: depots)
         }
         .navigationTitle(Text("Depots"))
-        .navigationBarItems(trailing: Button(action: { isPresented = true }) {
+        .navigationBarItems(leading: Button(action: { presentedSheet = .search }) {
+            Image(systemName: "magnifyingglass")
+        },
+            trailing: Button(action: { presentedSheet = .edit }) {
             Image(systemName: "plus")
         })
         .listStyle(InsetGroupedListStyle())
-        .sheet(isPresented: $isPresented) {
-            NavigationView {
-                DepotEditView(depotData: $newDepotData)
-                    .navigationBarItems(
-                        leading: Button("Dismiss") { isPresented = false },
-                        trailing: Button("Save") {
-                            let newDepot = Depot(from: newDepotData)
-                            depots.append(newDepot)
-                            isPresented = false
-                        }
-                    )
+        .fullScreenCover(item: $presentedSheet) { sheet in
+            switch sheet {
+            case .edit:
+                editView
+            case .search:
+                searchView
             }
         }
         .onChange(of: scenePhase) { phase in
             if phase == .inactive { saveAction() }
+        }
+    }
+    
+    var editView: some View {
+        NavigationView {
+            DepotEditView(depotData: $newDepotData)
+                .navigationBarItems(
+                    leading: Button("Dismiss") { presentedSheet = nil },
+                    trailing: Button("Save") {
+                        let newDepot = Depot(from: newDepotData)
+                        depots.append(newDepot)
+                        presentedSheet = nil
+                    }
+                )
+        }
+    }
+    
+    var searchView: some View {
+        VStack {
+            Text("Search")
+            Button(action: { presentedSheet = nil}) {
+                Text("Dismiss")
+            }
         }
     }
     
