@@ -9,7 +9,7 @@ enum ActiveSheet: Identifiable {
 }
 
 struct PortfolioView: View {
-    @Binding var depots: [Depot]
+    @EnvironmentObject var depotData: DepotData
     @Environment(\.scenePhase) private var scenePhase
     @State private var presentedSheet: ActiveSheet?
     @State private var newDepotData = Depot.Data()
@@ -17,16 +17,16 @@ struct PortfolioView: View {
 
     var body: some View {
         List {
-            ForEach(depots) { depot in
+            ForEach(depotData.depots) { depot in
                 NavigationLink(destination: DepotView(depot: depot)) {
                     DepotListRow(depot: depot)
                 }
             }
             .onDelete { indices in
-                depots.remove(atOffsets: indices)
+                depotData.depots.remove(atOffsets: indices)
             }
             Spacer()
-            TotalRow(depots: depots)
+            TotalRow(depots: depotData.depots)
         }
         .navigationTitle(Text("Depots"))
         .navigationBarItems(leading: Button(action: { presentedSheet = .search }) {
@@ -56,7 +56,7 @@ struct PortfolioView: View {
                     leading: Button("Dismiss") { presentedSheet = nil },
                     trailing: Button("Save") {
                         let newDepot = Depot(from: newDepotData)
-                        depots.append(newDepot)
+                        depotData.depots.append(newDepot)
                         presentedSheet = nil
                     }
                 )
@@ -72,17 +72,18 @@ struct PortfolioView: View {
     }
     
     private func binding(for depot: Depot) -> Binding<Depot> {
-        guard let depotIndex = depots.firstIndex(where: { $0.id == depot.id }) else {
+        guard let depotIndex = depotData.depots.firstIndex(where: { $0.id == depot.id }) else {
             fatalError("Can't find depot in array")
         }
-        return $depots[depotIndex]
+        return $depotData.depots[depotIndex]
     }
 }
 
 struct PortfolioView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PortfolioView(depots: .constant(testDepots), saveAction: {})
+            PortfolioView(saveAction: {})
+                .environmentObject(DepotData(depots: testDepots))
         }
     }
 }

@@ -6,7 +6,9 @@ struct SecurityDetails {
 }
 
 struct SecurityView: View {
+    @EnvironmentObject var depotData: DepotData
     let securityDetails: SecurityDetails
+    @State private var isShowingSheet = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -21,18 +23,22 @@ struct SecurityView: View {
             HStack {
                 Button("Buy", action: {
 //                    transactionType = .buy
-//                    isShowingSheet.toggle()
+                    isShowingSheet.toggle()
                 })
                 Spacer()
                 Button("Sell", action: {
 //                    transactionType = .sell
-//                    isShowingSheet.toggle()
+                    isShowingSheet.toggle()
                 })
             }
             .padding(.top)
             Spacer()
         }
         .padding()
+        .fullScreenCover(isPresented: $isShowingSheet) {
+            SecurityOrderView()
+                .environmentObject(depotData)
+        }
     }
 }
 

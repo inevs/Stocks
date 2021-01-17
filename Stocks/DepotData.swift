@@ -1,7 +1,11 @@
 import Foundation
 
 class DepotData: ObservableObject {
-    @Published var depots: [Depot] = []
+    @Published var depots: [Depot]
+    
+    init(depots: [Depot] = []) {
+        self.depots = depots
+    }
     
     private static var documentsFolder: URL {
         do {
