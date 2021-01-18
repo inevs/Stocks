@@ -21,23 +21,25 @@ struct SecurityView: View {
                 .font(.subheadline)
             StockFinancialView(symbol: securityDetails.symbol)
             HStack {
+//                NavigationLink(destination: SecurityOrderView().environmentObject(depotData)) {
+//                    Text("Buy")
+//                }
                 Button("Buy", action: {
 //                    transactionType = .buy
                     isShowingSheet.toggle()
                 })
-                Spacer()
-                Button("Sell", action: {
-//                    transactionType = .sell
-                    isShowingSheet.toggle()
-                })
+//                Spacer()
+//                Button("Sell", action: {
+//                   transactionType = .sell
+//                    isShowingSheet.toggle()
+//                })
             }
             .padding(.top)
             Spacer()
         }
         .padding()
-        .fullScreenCover(isPresented: $isShowingSheet) {
-            SecurityOrderView()
-                .environmentObject(depotData)
+        .sheet(isPresented: $isShowingSheet) {
+            SecurityOrderView().environmentObject(depotData)
         }
     }
 }

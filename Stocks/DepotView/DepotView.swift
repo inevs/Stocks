@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct DepotView: View {
+    @EnvironmentObject var depotData: DepotData
     let depot: Depot
     
     var body: some View {
@@ -9,7 +10,9 @@ struct DepotView: View {
                 ChangesView()
                 Spacer()
                 ForEach(depot.securityAllocations) { securityAllocation in
-                    NavigationLink(destination: SecurityView(securityDetails: SecurityDetails(symbol: securityAllocation.security.symbol, name: securityAllocation.security.name))) {
+                    NavigationLink(destination: SecurityView(securityDetails: SecurityDetails(symbol: securityAllocation.security.symbol, name: securityAllocation.security.name))
+                                    .environmentObject(depotData)
+                    ) {
                         SecurityRow(securityAllocation: securityAllocation)
                     }
                 }
