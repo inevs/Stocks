@@ -51,5 +51,34 @@ class DepotData: ObservableObject {
             }
         }
     }
+}
+
+extension DepotData {
+    
+    func addSecurityAllocation(withData data: SecurityAllocation.Data, toDepot depot: Depot) {
+        guard let depotIndex = depots.firstIndex(where: { $0.name == depot.name }) else { return }
+        
+        guard let securityAllocationIndex = depot.securityAllocations.firstIndex(where: { $0.security.symbol == data.symbol }) else {
+            let securityAllocation = SecurityAllocation(from: data)
+            depots[depotIndex].securityAllocations.append(securityAllocation)
+            return
+        }
+        depots[depotIndex].securityAllocations[securityAllocationIndex].amount += Decimal(from: data.amount)
+        
+    }
+    
+    func removeSecurityAllocation(withData data: SecurityAllocation.Data, fromDepot depot: Depot) {
+        guard let depotIndex = depots.firstIndex(where: { $0.name == depot.name }) else { return }
+        
+        guard let securityAllocationIndex = depot.securityAllocations.firstIndex(where: { $0.security.symbol == data.symbol }) else {
+            return
+        }
+        
+        if (depot.securityAllocations[securityAllocationIndex]).amount > Decimal(from: data.amount) {
+            depots[depotIndex].securityAllocations[securityAllocationIndex].amount -= Decimal(from: data.amount)
+        } else {
+            depots[depotIndex].securityAllocations.remove(at: securityAllocationIndex)
+        }
+    }
 
 }

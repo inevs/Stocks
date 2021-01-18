@@ -3,12 +3,24 @@ import SwiftUI
 struct SecurityDetails {
     let symbol: String
     let name: String
+    
+    init(symbol: String, name: String) {
+        self.symbol = symbol
+        self.name = name
+    }
+
+    init(from securityAllocation: SecurityAllocation) {
+        self.init(symbol: securityAllocation.security.symbol, name: securityAllocation.security.name)
+    }
 }
 
 struct SecurityView: View {
     @EnvironmentObject var depotData: DepotData
     let securityDetails: SecurityDetails
+    let depot: Depot
     @State private var isShowingSheet = false
+    @State private var securityAllocationData = SecurityAllocation.Data()
+    @State private var transactionType: TransactionType = .buy
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -21,33 +33,44 @@ struct SecurityView: View {
                 .font(.subheadline)
             StockFinancialView(symbol: securityDetails.symbol)
             HStack {
-//                NavigationLink(destination: SecurityOrderView().environmentObject(depotData)) {
-//                    Text("Buy")
-//                }
                 Button("Buy", action: {
-//                    transactionType = .buy
+                    transactionType = .buy
                     isShowingSheet.toggle()
                 })
-//                Spacer()
-//                Button("Sell", action: {
-//                   transactionType = .sell
-//                    isShowingSheet.toggle()
-//                })
+                Spacer()
+                Button("Sell", action: {
+                   transactionType = .sell
+                    isShowingSheet.toggle()
+                })
             }
             .padding(.top)
             Spacer()
         }
         .padding()
         .sheet(isPresented: $isShowingSheet) {
-            SecurityOrderView().environmentObject(depotData)
+            SecurityOrderView(securityAllocationData: $securityAllocationData) {
+                securityAllocationData.name = securityDetails.name
+                securityAllocationData.symbol = securityDetails.symbol
+                switch transactionType {
+                case .buy:
+                    depotData.addSecurityAllocation(withData: securityAllocationData, toDepot: depot)
+                case .sell:
+                    depotData.removeSecurityAllocation(withData: securityAllocationData, fromDepot: depot)
+                }
+                isShowingSheet = false
+            }
         }
+    }
+    
+    enum TransactionType {
+        case buy, sell
     }
 }
 
 struct SecurityView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SecurityView(securityDetails: SecurityDetails(symbol: "AAPL", name: "Apple"))
+            SecurityView(securityDetails: SecurityDetails(symbol: "AAPL", name: "Apple"), depot: comdirect)
         }
     }
 }

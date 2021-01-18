@@ -4,20 +4,27 @@ struct DepotView: View {
     @EnvironmentObject var depotData: DepotData
     let depot: Depot
     
+    var depotIndex: Int {
+        guard let index = depotData.depots.firstIndex(where: { $0.name == depot.name}) else  {
+            fatalError()
+        }
+        return index
+    }
+    
     var body: some View {
         VStack {
             List {
                 ChangesView()
                 Spacer()
-                ForEach(depot.securityAllocations) { securityAllocation in
-                    NavigationLink(destination: SecurityView(securityDetails: SecurityDetails(symbol: securityAllocation.security.symbol, name: securityAllocation.security.name))
+                ForEach(depotData.depots[depotIndex].securityAllocations) { securityAllocation in
+                    NavigationLink(destination: SecurityView(securityDetails: SecurityDetails(from: securityAllocation), depot: depot)
                                     .environmentObject(depotData)
                     ) {
                         SecurityRow(securityAllocation: securityAllocation)
                     }
                 }
                 Spacer()
-                NavigationLink(destination: SearchSecurityView()) {
+                NavigationLink(destination: SearchSecurityView(depot: depot)) {
                     Label("Search Securities", systemImage: "magnifyingglass")
                 }
             }

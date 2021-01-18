@@ -10,6 +10,7 @@ struct SecurityQueryResult: Identifiable {
 struct SearchSecurityView: View {
     @State private var search = ""
     @State private var searchResult: [SecurityQueryResult] = []
+    let depot: Depot
 
     var body: some View {
         List {
@@ -26,7 +27,7 @@ struct SearchSecurityView: View {
             Section {
                 ForEach(searchResult) { result in
                     NavigationLink(
-                        destination: SecurityView(securityDetails: SecurityDetails(symbol: result.symbol, name: result.name))) {
+                        destination: SecurityView(securityDetails: SecurityDetails(symbol: result.symbol, name: result.name), depot: depot)) {
                         VStack(alignment: .leading) {
                             Text(result.name)
                                 .font(.headline)
@@ -52,7 +53,7 @@ struct SearchSecurityView: View {
 struct SearchSecurityView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SearchSecurityView()
+            SearchSecurityView(depot: comdirect)
                 .navigationBarTitle(Text("Search Security"), displayMode: .inline)
                 .navigationBarItems(leading: Button(action: {}) {Text("Dismiss")})
         }

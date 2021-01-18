@@ -5,9 +5,8 @@ struct SecurityOrderData {
 }
 
 struct SecurityOrderView: View {
-    @EnvironmentObject var depotData: DepotData
-    @Environment(\.presentationMode) var presentationMode
-    @State private var securityAllocationData = SecurityAllocation.Data()
+    @Binding var securityAllocationData: SecurityAllocation.Data
+    let orderAction: ()->()
     
     var body: some View {
         Form {
@@ -18,18 +17,22 @@ struct SecurityOrderView: View {
 //                    }
 //                }
             }
-            Section(header: Text("Security")) {
+            Section(header: Text("Security Info")) {
+                VStack {
+                    Text("Apple")
+                    Text("AAPL")
+                }
+            }
+            Section(header: Text("Order Data")) {
 //                TextField("Date", text: $date)
                 TextField("Amount", text: $securityAllocationData.amount)
+                    .keyboardType(.decimalPad)
 //                TextField("Price", text: $securityAllocationData)
             }
-            HStack {
-                Spacer()
-                Button("Order", action: {
-                    depotData.depots.append(Depot(name: "Foo", cash: Money(amount: 0.0)))
-                    presentationMode.wrappedValue.dismiss()
-                })
-                Spacer()
+            Section {
+                Button(action: orderAction) {
+                    Text("Order")
+                }
             }
         }
         .navigationBarTitle(Text(securityAllocationData.name), displayMode: .inline)
@@ -38,7 +41,6 @@ struct SecurityOrderView: View {
 
 struct SecurityOrderView_Previews: PreviewProvider {
     static var previews: some View {
-        SecurityOrderView()
-            .environmentObject(DepotData(depots: testDepots))
+        SecurityOrderView(securityAllocationData: .constant(SecurityAllocation.Data()), orderAction: {})
     }
 }
