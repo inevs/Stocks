@@ -16,8 +16,12 @@ struct DepotView: View {
                         SecurityRow(securityAllocation: securityAllocation)
                     }
                 }
+                Spacer()
+                NavigationLink(destination: SearchSecurityView()) {
+                    Label("Search Securities", systemImage: "magnifyingglass")
+                }
             }
-            .listStyle(InsetGroupedListStyle())
+            .listStyle(PlainListStyle())
         }
         .navigationBarTitle(Text(depot.name), displayMode: .inline)
     }
@@ -27,6 +31,7 @@ struct DepotView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             DepotView(depot: comdirect)
+                .environmentObject(DepotData(depots: testDepots))
         }
     }
 }
@@ -34,12 +39,15 @@ struct DepotView_Previews: PreviewProvider {
 struct ChangesView: View {
     var body: some View {
         HStack {
-            HStack {
+            HStack() {
                 PeriodView(period: .day)
+                    .frame(minWidth: 0, maxWidth: .infinity)
                 Divider()
                 PeriodView(period: .month)
+                    .frame(minWidth: 0, maxWidth: .infinity)
                 Divider()
                 PeriodView(period: .year)
+                    .frame(minWidth: 0, maxWidth: .infinity)
             }
         }
     }
@@ -70,7 +78,7 @@ struct PeriodView: View {
             case .year:
                 Text("This Year")
             }
-            HStack {
+            VStack(alignment: .leading) {
                 Text("+237,00 EUR")
                 Text("+10 %")
             }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum ActiveSheet: Identifiable {
-    case edit, search
+    case edit
 
     var id: Int {
         hashValue
@@ -11,7 +11,7 @@ enum ActiveSheet: Identifiable {
 struct PortfolioView: View {
     @EnvironmentObject var depotData: DepotData
     @Environment(\.scenePhase) private var scenePhase
-    @State private var presentedSheet: ActiveSheet?
+    @State private var isPresentingSheet = false
     @State private var newDepotData = Depot.Data()
     let saveAction: () -> Void
 
@@ -29,20 +29,12 @@ struct PortfolioView: View {
             TotalRow(depots: depotData.depots)
         }
         .navigationTitle(Text("Depots"))
-        .navigationBarItems(leading: Button(action: { presentedSheet = .search }) {
-            Image(systemName: "magnifyingglass")
-        },
-            trailing: Button(action: { presentedSheet = .edit }) {
+        .navigationBarItems(trailing: Button(action: { isPresentingSheet = true }) {
             Image(systemName: "plus")
         })
         .listStyle(InsetGroupedListStyle())
-        .fullScreenCover(item: $presentedSheet) { sheet in
-            switch sheet {
-            case .edit:
-                editView
-            case .search:
-                searchView
-            }
+        .fullScreenCover(isPresented: $isPresentingSheet) {
+            editView
         }
         .onChange(of: scenePhase) { phase in
             if phase == .inactive { saveAction() }
@@ -53,21 +45,13 @@ struct PortfolioView: View {
         NavigationView {
             DepotEditView(depotData: $newDepotData)
                 .navigationBarItems(
-                    leading: Button("Dismiss") { presentedSheet = nil },
+                    leading: Button("Dismiss") { isPresentingSheet = false },
                     trailing: Button("Save") {
                         let newDepot = Depot(from: newDepotData)
                         depotData.depots.append(newDepot)
-                        presentedSheet = nil
+                        isPresentingSheet = false
                     }
                 )
-        }
-    }
-    
-    var searchView: some View {
-        NavigationView {
-            SearchSecurityView()
-                .navigationBarTitle(Text("Search Security"), displayMode: .inline)
-                .navigationBarItems(leading: Button(action: { presentedSheet = nil }) {Text("Dismiss")})
         }
     }
     
