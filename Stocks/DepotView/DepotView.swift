@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct DepotView: View {
-    @EnvironmentObject var depotData: DepotData
+    @EnvironmentObject var depotData: StateController
     let depot: Depot
     
     var depotIndex: Int {
@@ -38,7 +38,7 @@ struct DepotView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             DepotView(depot: comdirect)
-                .environmentObject(DepotData(depots: testDepots))
+                .environmentObject(StateController(depots: testDepots))
         }
     }
 }

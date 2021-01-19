@@ -15,7 +15,7 @@ struct SecurityDetails {
 }
 
 struct SecurityView: View {
-    @EnvironmentObject var depotData: DepotData
+    @EnvironmentObject var depotData: StateController
     let securityDetails: SecurityDetails
     let depot: Depot
     @State private var isShowingSheet = false

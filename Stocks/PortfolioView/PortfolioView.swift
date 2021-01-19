@@ -9,65 +9,62 @@ enum ActiveSheet: Identifiable {
 }
 
 struct PortfolioView: View {
-    @EnvironmentObject var depotData: DepotData
-    @Environment(\.scenePhase) private var scenePhase
-    @State private var isPresentingSheet = false
-    @State private var newDepotData = Depot.Data()
-    let saveAction: () -> Void
+    @EnvironmentObject var stateController: StateController
+    @State private var addingDepot = false
 
     var body: some View {
-        List {
-            ForEach(depotData.depots) { depot in
-                NavigationLink(destination: DepotView(depot: depot)) {
-                    DepotListRow(depot: depot)
-                }
-            }
-            .onDelete { indices in
-                depotData.depots.remove(atOffsets: indices)
-            }
-            Spacer()
-            TotalRow(depots: depotData.depots)
-        }
-        .navigationTitle(Text("Depots"))
-        .navigationBarItems(trailing: Button(action: { isPresentingSheet = true }) {
-            Image(systemName: "plus")
-        })
-        .listStyle(InsetGroupedListStyle())
-        .fullScreenCover(isPresented: $isPresentingSheet) {
-            editView
-        }
-        .onChange(of: scenePhase) { phase in
-            if phase == .inactive { saveAction() }
-        }
-    }
-    
-    var editView: some View {
         NavigationView {
-            DepotEditView(depotData: $newDepotData)
-                .navigationBarItems(
-                    leading: Button("Dismiss") { isPresentingSheet = false },
-                    trailing: Button("Save") {
-                        let newDepot = Depot(from: newDepotData)
-                        depotData.depots.append(newDepot)
-                        isPresentingSheet = false
-                    }
-                )
+            Content(depots: $stateController.depots, newDepot: { self.addingDepot = true }, deleteDepots: deleteDepots)
+        }
+        .sheet(isPresented: $addingDepot) {
+            NavigationView {
+                NewDepotView()
+            }
+            .environmentObject(self.stateController)
+            
         }
     }
     
-    private func binding(for depot: Depot) -> Binding<Depot> {
-        guard let depotIndex = depotData.depots.firstIndex(where: { $0.id == depot.id }) else {
-            fatalError("Can't find depot in array")
-        }
-        return $depotData.depots[depotIndex]
+    func deleteDepots(atIndexSet indexSet: IndexSet) {
+        self.stateController.deleteDepots(atIndexSet: indexSet)
     }
 }
+
+extension PortfolioView {
+    struct Content: View {
+        @Binding var depots: [Depot]
+        let newDepot: () -> Void
+        let deleteDepots: (IndexSet)->Void
+        
+        var body: some View {
+            List {
+                ForEach(depots) { depot in
+                    NavigationLink(destination: DepotView(depot: depot)) {
+                        DepotListRow(depot: depot)
+                    }
+                }
+                .onMove(perform: move(fromOffsets:toOffset:))
+                .onDelete(perform: deleteDepots)
+                Spacer()
+                TotalRow(depots: depots)
+            }
+            .navigationTitle(Text("Depots"))
+            .navigationBarItems(leading: Button(action: newDepot ) {
+                Image(systemName: "plus")
+            }, trailing: EditButton())
+        }
+        
+        func move(fromOffsets source: IndexSet, toOffset destination: Int) {
+            depots.move(fromOffsets: source, toOffset: destination)
+        }
+    }
+}
+
 
 struct PortfolioView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PortfolioView(saveAction: {})
-                .environmentObject(DepotData(depots: testDepots))
+            PortfolioView.Content(depots: .constant(testDepots), newDepot: {}, deleteDepots: {_ in })
         }
     }
 }
