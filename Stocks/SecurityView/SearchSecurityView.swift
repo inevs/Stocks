@@ -50,6 +50,7 @@ struct SearchSecurityView: View {
 
 }
 
+
 struct SearchSecurityView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {

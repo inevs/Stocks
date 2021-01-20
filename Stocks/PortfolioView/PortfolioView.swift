@@ -1,13 +1,5 @@
 import SwiftUI
 
-enum ActiveSheet: Identifiable {
-    case edit
-
-    var id: Int {
-        hashValue
-    }
-}
-
 struct PortfolioView: View {
     @EnvironmentObject var stateController: StateController
     @State private var addingDepot = false
@@ -40,7 +32,7 @@ extension PortfolioView {
             List {
                 ForEach(depots) { depot in
                     NavigationLink(destination: DepotView(depot: depot)) {
-                        DepotListRow(depot: depot)
+                        Row(depot: depot)
                     }
                 }
                 .onMove(perform: move(fromOffsets:toOffset:))
@@ -60,6 +52,36 @@ extension PortfolioView {
     }
 }
 
+extension PortfolioView.Content {
+    struct Row: View {
+        var depot: Depot
+        
+        var body: some View {
+            HStack {
+                Text(depot.name)
+                Spacer()
+                Text(depot.currentValue.string())
+            }
+        }
+    }
+    
+    struct TotalRow: View {
+        let depots: [Depot]
+        
+        var body: some View {
+            HStack {
+                Text("Total")
+                Spacer()
+                Text(totalValue.string())
+            }
+            .font(.headline)
+        }
+        
+        var totalValue: Money {
+            depots.map({$0.currentValue}).reduce(Money.zero, +)
+        }
+    }
+}
 
 struct PortfolioView_Previews: PreviewProvider {
     static var previews: some View {

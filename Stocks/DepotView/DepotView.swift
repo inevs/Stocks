@@ -1,25 +1,31 @@
 import SwiftUI
 
 struct DepotView: View {
-    @EnvironmentObject var depotData: StateController
+    @EnvironmentObject var stateController: StateController
     let depot: Depot
     
     var depotIndex: Int {
-        guard let index = depotData.depots.firstIndex(where: { $0.name == depot.name}) else  {
+        guard let index = stateController.depots.firstIndex(where: { $0.name == depot.name}) else  {
             fatalError()
         }
         return index
     }
     
     var body: some View {
-        VStack {
+        Content(depot: stateController.depots[depotIndex])
+    }
+}
+
+extension DepotView {
+    struct Content: View {
+        let depot: Depot
+        
+        var body: some View {
             List {
                 ChangesView()
                 Spacer()
-                ForEach(depotData.depots[depotIndex].securityAllocations) { securityAllocation in
-                    NavigationLink(destination: SecurityView(securityDetails: SecurityDetails(from: securityAllocation), depot: depot)
-                                    .environmentObject(depotData)
-                    ) {
+                ForEach(depot.securityAllocations) { securityAllocation in
+                    NavigationLink(destination: SecurityView(securityDetails: SecurityDetails(from: securityAllocation), depot: depot)) {
                         SecurityRow(securityAllocation: securityAllocation)
                     }
                 }
@@ -29,19 +35,19 @@ struct DepotView: View {
                 }
             }
             .listStyle(PlainListStyle())
+            .navigationBarTitle(Text(depot.name), displayMode: .inline)
         }
-        .navigationBarTitle(Text(depot.name), displayMode: .inline)
     }
 }
 
 struct DepotView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            DepotView(depot: comdirect)
-                .environmentObject(StateController(depots: testDepots))
+            DepotView.Content(depot: comdirect)
         }
     }
 }
+
 
 struct ChangesView: View {
     var body: some View {
