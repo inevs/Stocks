@@ -23,30 +23,7 @@ struct SecurityView: View {
     @State private var transactionType: TransactionType = .buy
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text(securityDetails.name)
-                .font(.title)
-                Spacer()
-            }
-            Text(securityDetails.symbol)
-                .font(.subheadline)
-            StockFinancialView(symbol: securityDetails.symbol)
-            HStack {
-                Button("Buy", action: {
-                    transactionType = .buy
-                    isShowingSheet.toggle()
-                })
-                Spacer()
-                Button("Sell", action: {
-                   transactionType = .sell
-                    isShowingSheet.toggle()
-                })
-            }
-            .padding(.top)
-            Spacer()
-        }
-        .padding()
+        Content(securityDetails: securityDetails, buy: buy, sell: sell)
         .sheet(isPresented: $isShowingSheet) {
             SecurityOrderView(securityAllocationData: $securityAllocationData) {
                 securityAllocationData.name = securityDetails.name
@@ -62,15 +39,55 @@ struct SecurityView: View {
         }
     }
     
+    func buy() {
+        transactionType = .buy
+        isShowingSheet = true
+    }
+    
+    func sell() {
+        transactionType = .sell
+        isShowingSheet = true
+    }
+    
     enum TransactionType {
         case buy, sell
+    }
+}
+
+extension SecurityView {
+    struct Content: View {
+        let securityDetails: SecurityDetails
+        
+        let buy: () -> Void
+        let sell: () -> Void
+        
+        var body: some View {
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(securityDetails.name)
+                    .font(.title)
+                    Spacer()
+                }
+                Text(securityDetails.symbol)
+                    .font(.subheadline)
+                StockFinancialView(symbol: securityDetails.symbol)
+                HStack {
+                    Button("Buy", action: buy)
+                    Spacer()
+                    Button("Sell", action: sell)
+                }
+                .padding(.top)
+                Spacer()
+            }
+            .padding()
+        }
     }
 }
 
 struct SecurityView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            SecurityView(securityDetails: SecurityDetails(symbol: "AAPL", name: "Apple"), depot: comdirect)
+            SecurityView.Content(securityDetails: SecurityDetails(symbol: "AAPL", name: "Apple"), buy: {}, sell: {})
         }
     }
 }
