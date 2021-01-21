@@ -3,18 +3,18 @@ import Foundation
 struct Depot: Identifiable, Codable {
     let id: UUID
     var name: String
-    var cash: Money
+    var balance: Money
     
-    init(id: UUID = UUID(), name: String, cash: Money) {
+    init(id: UUID = UUID(), name: String, initialBalance balance: Money) {
         self.id = id
         self.name = name
-        self.cash = cash
+        self.balance = balance
     }
 }
 
 extension Depot {
     var currentValue: Money {
-        cash
+        balance
     }
 }
 
@@ -27,15 +27,15 @@ extension Depot {
     init(from data: Data) {
         self.id = UUID()
         self.name = data.name
-        self.cash = Money(from: data.cash)
+        self.balance = Money(from: data.cash)
     }
     
     var data: Data {
-        return Data(name: name, cash: cash.amount.string(precision: 2))
+        return Data(name: name, cash: balance.amount.string(precision: 2))
     }
     
     mutating func update(from data: Data) {
         name = data.name
-        cash = Money(from: data.cash)
+        balance = Money(from: data.cash)
     }
 }

@@ -14,7 +14,7 @@ class StateController: ObservableObject {
     }
     
     func addDepot(named name: String, withCash cash: String) {
-        let depot = Depot(name: name, cash: Money(from: cash))
+        let depot = Depot(name: name, initialBalance: Money(from: cash))
         depots.append(depot)
         storageController.save(depots)
     }
