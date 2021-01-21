@@ -12,6 +12,12 @@ struct SecurityAllocation: Identifiable, Codable {
     }
 }
 
+extension SecurityAllocation: Equatable {
+    static func == (lhs: SecurityAllocation, rhs: SecurityAllocation) -> Bool {
+        lhs.security.symbol == rhs.security.symbol
+    }
+}
+
 extension SecurityAllocation {
     struct Data {
         var amount: String = ""

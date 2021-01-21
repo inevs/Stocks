@@ -12,6 +12,16 @@ struct Depot: Identifiable, Codable {
         self.cash = cash
         self.securityAllocations = securityAllocations
     }
+    
+    mutating func addSecurityAllocation(withData data: SecurityAllocation.Data) {
+        guard let securityAllocationIndex = securityAllocations.firstIndex(where: { $0.security.symbol == data.symbol }) else {
+            let securityAllocation = SecurityAllocation(from: data)
+            securityAllocations.append(securityAllocation)
+            return
+        }
+        securityAllocations[securityAllocationIndex].amount += Decimal(from: data.amount)
+
+    }
 }
 
 extension Depot {

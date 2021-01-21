@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26393F8625B965F300D9F655 /* CashTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26393F8525B965F300D9F655 /* CashTransaction.swift */; };
+		26393F8B25B9683D00D9F655 /* SecurityTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26393F8A25B9683D00D9F655 /* SecurityTransaction.swift */; };
 		26C86D7425B1E7CC00293024 /* StocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86D7325B1E7CC00293024 /* StocksApp.swift */; };
 		26C86D7825B1E7CD00293024 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C86D7725B1E7CD00293024 /* Assets.xcassets */; };
 		26C86D7B25B1E7CD00293024 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C86D7A25B1E7CD00293024 /* Preview Assets.xcassets */; };
-		26C86D8625B1E7CD00293024 /* StocksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86D8525B1E7CD00293024 /* StocksTests.swift */; };
+		26C86D8625B1E7CD00293024 /* DepotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86D8525B1E7CD00293024 /* DepotTests.swift */; };
 		26C86D9125B1E7CD00293024 /* StocksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86D9025B1E7CD00293024 /* StocksUITests.swift */; };
 		26C86DA225B1F6CA00293024 /* Depot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DA125B1F6CA00293024 /* Depot.swift */; };
 		26C86DAA25B1F6E300293024 /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DA925B1F6E300293024 /* Money.swift */; };
@@ -45,13 +47,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		26393F8525B965F300D9F655 /* CashTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashTransaction.swift; sourceTree = "<group>"; };
+		26393F8A25B9683D00D9F655 /* SecurityTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityTransaction.swift; sourceTree = "<group>"; };
 		26C86D7025B1E7CC00293024 /* Stocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C86D7325B1E7CC00293024 /* StocksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksApp.swift; sourceTree = "<group>"; };
 		26C86D7725B1E7CD00293024 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26C86D7A25B1E7CD00293024 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		26C86D7C25B1E7CD00293024 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26C86D8125B1E7CD00293024 /* StocksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StocksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		26C86D8525B1E7CD00293024 /* StocksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksTests.swift; sourceTree = "<group>"; };
+		26C86D8525B1E7CD00293024 /* DepotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepotTests.swift; sourceTree = "<group>"; };
 		26C86D8725B1E7CD00293024 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26C86D8C25B1E7CD00293024 /* StocksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StocksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C86D9025B1E7CD00293024 /* StocksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksUITests.swift; sourceTree = "<group>"; };
@@ -128,6 +132,8 @@
 				26C86DE625B2F38C00293024 /* DepotView */,
 				26C86DF325B303E100293024 /* SecurityView */,
 				26C86DA125B1F6CA00293024 /* Depot.swift */,
+				26393F8525B965F300D9F655 /* CashTransaction.swift */,
+				26393F8A25B9683D00D9F655 /* SecurityTransaction.swift */,
 				26C86DA925B1F6E300293024 /* Money.swift */,
 				26C86DED25B2F66B00293024 /* Security.swift */,
 				26C86DEC25B2F66B00293024 /* SecurityAllocation.swift */,
@@ -148,7 +154,7 @@
 		26C86D8425B1E7CD00293024 /* StocksTests */ = {
 			isa = PBXGroup;
 			children = (
-				26C86D8525B1E7CD00293024 /* StocksTests.swift */,
+				26C86D8525B1E7CD00293024 /* DepotTests.swift */,
 				26C86D8725B1E7CD00293024 /* Info.plist */,
 			);
 			path = StocksTests;
@@ -329,6 +335,7 @@
 			files = (
 				26C86DDA25B2015D00293024 /* StateController.swift in Sources */,
 				26C86DBD25B1F7D100293024 /* PortfolioView.swift in Sources */,
+				26393F8B25B9683D00D9F655 /* SecurityTransaction.swift in Sources */,
 				26C86DD425B1FB3B00293024 /* NewDepotView.swift in Sources */,
 				26C86DEF25B2F66B00293024 /* Security.swift in Sources */,
 				26C86DE825B2F3A000293024 /* DepotView.swift in Sources */,
@@ -341,6 +348,7 @@
 				26C86DB025B1F78900293024 /* TestData.swift in Sources */,
 				26C86DA225B1F6CA00293024 /* Depot.swift in Sources */,
 				26C86DEE25B2F66B00293024 /* SecurityAllocation.swift in Sources */,
+				26393F8625B965F300D9F655 /* CashTransaction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +356,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26C86D8625B1E7CD00293024 /* StocksTests.swift in Sources */,
+				26C86D8625B1E7CD00293024 /* DepotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

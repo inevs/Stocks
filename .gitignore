@@ -3,3 +3,4 @@
 *.xcodeproj/project.xcworkspace/xcuserdata/**
 
 api-keys.plist
+.idea/**

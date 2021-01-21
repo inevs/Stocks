@@ -4,21 +4,22 @@ struct DepotView: View {
     @EnvironmentObject var stateController: StateController
     let depot: Depot
     
-    var depotIndex: Int {
-        guard let index = stateController.depots.firstIndex(where: { $0.name == depot.name}) else  {
-            fatalError()
-        }
-        return index
+    var body: some View {
+        Content(depot: binding(for: depot))
     }
     
-    var body: some View {
-        Content(depot: stateController.depots[depotIndex])
+    private func binding(for depot: Depot) -> Binding<Depot> {
+        guard let depotIndex = stateController.depots.firstIndex(where: { $0.id == depot.id }) else {
+            fatalError("Can't find depot in array")
+        }
+        return $stateController.depots[depotIndex]
     }
+
 }
 
 extension DepotView {
     struct Content: View {
-        let depot: Depot
+        @Binding var depot: Depot
         
         var body: some View {
             List {
@@ -43,7 +44,7 @@ extension DepotView {
 struct DepotView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            DepotView.Content(depot: comdirect)
+            DepotView.Content(depot: .constant(comdirect))
         }
     }
 }

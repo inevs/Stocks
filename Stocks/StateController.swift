@@ -28,15 +28,8 @@ class StateController: ObservableObject {
     }
 
     func addSecurityAllocation(withData data: SecurityAllocation.Data, toDepot depot: Depot) {
-        guard let depotIndex = depots.firstIndex(where: { $0.name == depot.name }) else { return }
-        
-        guard let securityAllocationIndex = depot.securityAllocations.firstIndex(where: { $0.security.symbol == data.symbol }) else {
-            let securityAllocation = SecurityAllocation(from: data)
-            depots[depotIndex].securityAllocations.append(securityAllocation)
-            return
-        }
-        depots[depotIndex].securityAllocations[securityAllocationIndex].amount += Decimal(from: data.amount)
-        
+        guard let depotIndex = depots.firstIndex(where: { $0.name == depot.name }) else { return }        
+        depots[depotIndex].addSecurityAllocation(withData: data)
         storageController.save(depots)
     }
     

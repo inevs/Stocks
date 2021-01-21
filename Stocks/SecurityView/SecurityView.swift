@@ -25,18 +25,24 @@ struct SecurityView: View {
     var body: some View {
         Content(securityDetails: securityDetails, buy: buy, sell: sell)
         .sheet(isPresented: $isShowingSheet) {
-            SecurityOrderView(securityAllocationData: $securityAllocationData) {
-                securityAllocationData.name = securityDetails.name
-                securityAllocationData.symbol = securityDetails.symbol
-                switch transactionType {
-                case .buy:
-                    depotData.addSecurityAllocation(withData: securityAllocationData, toDepot: depot)
-                case .sell:
-                    depotData.removeSecurityAllocation(withData: securityAllocationData, fromDepot: depot)
-                }
-                isShowingSheet = false
-            }
+            SecurityOrderView(securityAllocationData: $securityAllocationData, orderAction: order, cancel: dismiss)
         }
+    }
+    
+    func order() {
+        securityAllocationData.name = securityDetails.name
+        securityAllocationData.symbol = securityDetails.symbol
+        switch transactionType {
+        case .buy:
+            depotData.addSecurityAllocation(withData: securityAllocationData, toDepot: depot)
+        case .sell:
+            depotData.removeSecurityAllocation(withData: securityAllocationData, fromDepot: depot)
+        }
+        dismiss()
+    }
+    
+    func dismiss() {
+        isShowingSheet = false
     }
     
     func buy() {
@@ -62,23 +68,63 @@ extension SecurityView {
         let sell: () -> Void
         
         var body: some View {
-            VStack(alignment: .leading) {
-                HStack {
-                    Text(securityDetails.name)
-                    .font(.title)
-                    Spacer()
+            List {
+                Section(header: Text("Security")) {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text(securityDetails.name)
+                            .font(.title)
+                            Spacer()
+                        }
+                        Text(securityDetails.symbol)
+                            .font(.subheadline)
+                    }
                 }
-                Text(securityDetails.symbol)
-                    .font(.subheadline)
-                StockFinancialView(symbol: securityDetails.symbol)
-                HStack {
-                    Button("Buy", action: buy)
-                    Spacer()
-                    Button("Sell", action: sell)
+                Section(header: Text("Market Data")) {
+                    StockFinancialView(symbol: securityDetails.symbol)
                 }
-                .padding(.top)
-                Spacer()
+                Section {
+                    HStack {
+                        Button(action: buy) {
+                            Text("Buy")
+                        }
+                        .buttonStyle(BorderlessButtonStyle())
+                        Spacer()
+                        Button(action: sell) {
+                            Text("Sell")
+                        }
+                        .buttonStyle(BorderlessButtonStyle())
+                    }
+                }
+                Section(header: Text("Your allocations")) {
+                    HStack {
+                        Text("Current Allocation:")
+                        Spacer()
+                        Text("10")
+                    }
+                    HStack {
+                        Text("Buying Value")
+                        Spacer()
+                        Text("3.456 EUR")
+                    }
+                    HStack {
+                        Text("Current Value")
+                        Spacer()
+                        Text("4.556 EUR")
+                    }
+                    HStack {
+                        Text("Loss / Gain")
+                        Spacer()
+                        Text("456 EUR")
+                    }
+                    HStack {
+                        Text("Percentage")
+                        Spacer()
+                        Text("5.6 %")
+                    }
+                }
             }
+            .listStyle(GroupedListStyle())
             .padding()
         }
     }
