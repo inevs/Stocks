@@ -4,23 +4,11 @@ struct Depot: Identifiable, Codable {
     let id: UUID
     var name: String
     var cash: Money
-    var securityAllocations: [SecurityAllocation]
     
-    init(id: UUID = UUID(), name: String, cash: Money, securityAllocations: [SecurityAllocation] = []) {
+    init(id: UUID = UUID(), name: String, cash: Money) {
         self.id = id
         self.name = name
         self.cash = cash
-        self.securityAllocations = securityAllocations
-    }
-    
-    mutating func addSecurityAllocation(withData data: SecurityAllocation.Data) {
-        guard let securityAllocationIndex = securityAllocations.firstIndex(where: { $0.security.symbol == data.symbol }) else {
-            let securityAllocation = SecurityAllocation(from: data)
-            securityAllocations.append(securityAllocation)
-            return
-        }
-        securityAllocations[securityAllocationIndex].amount += Decimal(from: data.amount)
-
     }
 }
 
@@ -40,7 +28,6 @@ extension Depot {
         self.id = UUID()
         self.name = data.name
         self.cash = Money(from: data.cash)
-        self.securityAllocations = []
     }
     
     var data: Data {

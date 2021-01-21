@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		26393F8625B965F300D9F655 /* CashTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26393F8525B965F300D9F655 /* CashTransaction.swift */; };
-		26393F8B25B9683D00D9F655 /* SecurityTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26393F8A25B9683D00D9F655 /* SecurityTransaction.swift */; };
 		26C86D7425B1E7CC00293024 /* StocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86D7325B1E7CC00293024 /* StocksApp.swift */; };
 		26C86D7825B1E7CD00293024 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C86D7725B1E7CD00293024 /* Assets.xcassets */; };
 		26C86D7B25B1E7CD00293024 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C86D7A25B1E7CD00293024 /* Preview Assets.xcassets */; };
@@ -21,11 +20,6 @@
 		26C86DD425B1FB3B00293024 /* NewDepotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DD325B1FB3B00293024 /* NewDepotView.swift */; };
 		26C86DDA25B2015D00293024 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DD925B2015D00293024 /* StateController.swift */; };
 		26C86DE825B2F3A000293024 /* DepotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DE725B2F3A000293024 /* DepotView.swift */; };
-		26C86DEE25B2F66B00293024 /* SecurityAllocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DEC25B2F66B00293024 /* SecurityAllocation.swift */; };
-		26C86DEF25B2F66B00293024 /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DED25B2F66B00293024 /* Security.swift */; };
-		26C86DF525B303F800293024 /* SearchSecurityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DF425B303F800293024 /* SearchSecurityView.swift */; };
-		26C86DFA25B3079A00293024 /* SecurityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DF925B3079A00293024 /* SecurityView.swift */; };
-		26C86DFF25B312F900293024 /* SecurityOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DFE25B312F900293024 /* SecurityOrderView.swift */; };
 		26E9522C25B6BF980095EFB2 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9522B25B6BF980095EFB2 /* StorageController.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +42,6 @@
 
 /* Begin PBXFileReference section */
 		26393F8525B965F300D9F655 /* CashTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashTransaction.swift; sourceTree = "<group>"; };
-		26393F8A25B9683D00D9F655 /* SecurityTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityTransaction.swift; sourceTree = "<group>"; };
 		26C86D7025B1E7CC00293024 /* Stocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C86D7325B1E7CC00293024 /* StocksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksApp.swift; sourceTree = "<group>"; };
 		26C86D7725B1E7CD00293024 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,11 +60,6 @@
 		26C86DD325B1FB3B00293024 /* NewDepotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDepotView.swift; sourceTree = "<group>"; };
 		26C86DD925B2015D00293024 /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
 		26C86DE725B2F3A000293024 /* DepotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepotView.swift; sourceTree = "<group>"; };
-		26C86DEC25B2F66B00293024 /* SecurityAllocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityAllocation.swift; sourceTree = "<group>"; };
-		26C86DED25B2F66B00293024 /* Security.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Security.swift; sourceTree = "<group>"; };
-		26C86DF425B303F800293024 /* SearchSecurityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSecurityView.swift; sourceTree = "<group>"; };
-		26C86DF925B3079A00293024 /* SecurityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityView.swift; sourceTree = "<group>"; };
-		26C86DFE25B312F900293024 /* SecurityOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityOrderView.swift; sourceTree = "<group>"; };
 		26E9522B25B6BF980095EFB2 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,13 +118,9 @@
 				26C86DB425B1F78D00293024 /* Mock */,
 				26C86DBB25B1F7BC00293024 /* PortfolioView */,
 				26C86DE625B2F38C00293024 /* DepotView */,
-				26C86DF325B303E100293024 /* SecurityView */,
 				26C86DA125B1F6CA00293024 /* Depot.swift */,
 				26393F8525B965F300D9F655 /* CashTransaction.swift */,
-				26393F8A25B9683D00D9F655 /* SecurityTransaction.swift */,
 				26C86DA925B1F6E300293024 /* Money.swift */,
-				26C86DED25B2F66B00293024 /* Security.swift */,
-				26C86DEC25B2F66B00293024 /* SecurityAllocation.swift */,
 				26C86DD925B2015D00293024 /* StateController.swift */,
 				26E9522B25B6BF980095EFB2 /* StorageController.swift */,
 			);
@@ -192,16 +176,6 @@
 				26C86DE725B2F3A000293024 /* DepotView.swift */,
 			);
 			path = DepotView;
-			sourceTree = "<group>";
-		};
-		26C86DF325B303E100293024 /* SecurityView */ = {
-			isa = PBXGroup;
-			children = (
-				26C86DF425B303F800293024 /* SearchSecurityView.swift */,
-				26C86DF925B3079A00293024 /* SecurityView.swift */,
-				26C86DFE25B312F900293024 /* SecurityOrderView.swift */,
-			);
-			path = SecurityView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,19 +309,13 @@
 			files = (
 				26C86DDA25B2015D00293024 /* StateController.swift in Sources */,
 				26C86DBD25B1F7D100293024 /* PortfolioView.swift in Sources */,
-				26393F8B25B9683D00D9F655 /* SecurityTransaction.swift in Sources */,
 				26C86DD425B1FB3B00293024 /* NewDepotView.swift in Sources */,
-				26C86DEF25B2F66B00293024 /* Security.swift in Sources */,
 				26C86DE825B2F3A000293024 /* DepotView.swift in Sources */,
-				26C86DFF25B312F900293024 /* SecurityOrderView.swift in Sources */,
 				26C86D7425B1E7CC00293024 /* StocksApp.swift in Sources */,
 				26C86DAA25B1F6E300293024 /* Money.swift in Sources */,
-				26C86DF525B303F800293024 /* SearchSecurityView.swift in Sources */,
 				26E9522C25B6BF980095EFB2 /* StorageController.swift in Sources */,
-				26C86DFA25B3079A00293024 /* SecurityView.swift in Sources */,
 				26C86DB025B1F78900293024 /* TestData.swift in Sources */,
 				26C86DA225B1F6CA00293024 /* Depot.swift in Sources */,
-				26C86DEE25B2F66B00293024 /* SecurityAllocation.swift in Sources */,
 				26393F8625B965F300D9F655 /* CashTransaction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

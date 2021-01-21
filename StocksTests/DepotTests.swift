@@ -12,10 +12,10 @@ class DepotTests: XCTestCase {
     }
 
     func testExample() throws {
-        let apple = Security(symbol: "AAPL", name: "Apple")
+//        let apple = Security(symbol: "AAPL", name: "Apple")
 //        let nvidia = Security(symbol: "NVD", name: "Nvidia")
-        let appleBuy10 = SecurityTransaction(security: apple, amount: 10, kind: .buy)
-        var depot = Depot(name: "test", cash: Money.zero)
+//        let appleBuy10 = SecurityTransaction(security: apple, amount: 10, kind: .buy)
+//        var depot = Depot(name: "test", cash: Money.zero)
 //        depot.securityTransactions = [appleBuy10]
 
 //        XCTAssertEqual(depot.securityAllocations.count, 1)

@@ -25,15 +25,7 @@ extension DepotView {
             List {
                 ChangesView()
                 Spacer()
-                ForEach(depot.securityAllocations) { securityAllocation in
-                    NavigationLink(destination: SecurityView(securityDetails: SecurityDetails(from: securityAllocation), depot: depot)) {
-                        SecurityRow(securityAllocation: securityAllocation)
-                    }
-                }
                 Spacer()
-                NavigationLink(destination: SearchSecurityView(depot: depot)) {
-                    Label("Search Securities", systemImage: "magnifyingglass")
-                }
             }
             .listStyle(PlainListStyle())
             .navigationBarTitle(Text(depot.name), displayMode: .inline)
@@ -63,18 +55,6 @@ struct ChangesView: View {
                 PeriodView(period: .year)
                     .frame(minWidth: 0, maxWidth: .infinity)
             }
-        }
-    }
-}
-
-struct SecurityRow: View {
-    let securityAllocation: SecurityAllocation
-    
-    var body: some View {
-        HStack {
-            Text("\(securityAllocation.amount.string()) \(securityAllocation.security.name)")
-            Spacer()
-            Text("\((securityAllocation.amount * securityAllocation.security.price).string())")
         }
     }
 }
