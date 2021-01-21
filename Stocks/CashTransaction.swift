@@ -1,8 +1,11 @@
 import Foundation
 
 struct CashTransaction: Codable, Identifiable {
-    enum Kind: String, Codable, CaseIterable {
-        case withdraw, income
+    enum Kind: String, Codable, CaseIterable, Identifiable {
+        case withdraw = "Withdraw",
+             income = "Income"
+        
+        var id: Kind { self }
     }
 
     let id: UUID

@@ -3,9 +3,30 @@ import SwiftUI
 struct DepotView: View {
     @EnvironmentObject var stateController: StateController
     let depot: Depot
+    @State private var addingTransaction: Bool = false
     
     var body: some View {
-        Content(depot: binding(for: depot))
+        Content(depot: binding(for: depot)) {
+            newTransaction()
+        }
+        .sheet(isPresented: $addingTransaction) {
+            NavigationView {
+                NewTransactionView(add: add, cancel: dismiss)
+            }
+            .environmentObject(self.stateController)
+        }
+    }
+    
+    func newTransaction() {
+        addingTransaction = true
+    }
+    
+    func add() {
+        dismiss()
+    }
+    
+    func dismiss() {
+        addingTransaction = false
     }
     
     private func binding(for depot: Depot) -> Binding<Depot> {
@@ -20,14 +41,22 @@ struct DepotView: View {
 extension DepotView {
     struct Content: View {
         @Binding var depot: Depot
+        let addTransaction: () -> Void
         
         var body: some View {
-            List {
-                ChangesView()
+            VStack {
+                List {
+                    ChangesView()
+                    Spacer()
+                    Text("Transaction History >")
+                    Spacer()
+                    Text("Balance: 7800 EUR")
+                }
+                .listStyle(PlainListStyle())
                 Spacer()
-                Spacer()
+                AddButton(title: "Add Transaction", action: addTransaction)
             }
-            .listStyle(PlainListStyle())
+                
             .navigationBarTitle(Text(depot.name), displayMode: .inline)
         }
     }
@@ -36,7 +65,7 @@ extension DepotView {
 struct DepotView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            DepotView.Content(depot: .constant(comdirect))
+            DepotView.Content(depot: .constant(comdirect), addTransaction: {})
         }
     }
 }
