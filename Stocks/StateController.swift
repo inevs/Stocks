@@ -31,4 +31,11 @@ class StateController: ObservableObject {
         depots[depotIndex].addCashTransaction(transaction)
         storageController.save(depots)
     }
+
+    func addOrderTransaction(_ transaction: OrderTransaction, toDepot depot: Depot) {
+        guard let depotIndex = depots.firstIndex(where: { $0.id == depot.id }) else { return }
+        depots[depotIndex].addOrderTransaction(transaction)
+        storageController.save(depots)
+    }
+
 }

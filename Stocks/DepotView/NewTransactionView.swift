@@ -1,20 +1,40 @@
 import SwiftUI
 
 struct NewTransactionView: View {
+    enum Screens: String, Identifiable, CaseIterable {
+        case cash = "Cash", order = "Order"
+        var id: Screens { self }
+    }
+    
     @EnvironmentObject private var stateController: StateController
     @Environment(\.presentationMode) private var presentationMode
 
-    @State private var date = Date().transactionFormat
-    @State private var amount = ""
-    @State private var transactionType = CashTransaction.Kind.income
-    @State private var beneficiary = ""
-    
+    @State private var cashTransactionData = CashTransaction.Data(date: Date().transactionFormat, amount: "", transactionType: .income, beneficiary: "")
+    @State private var orderTransactionData = OrderTransaction.Data()
+    @State private var selectedScreen = Screens.cash
+
     let depot: Depot
+    let screens = ["Cash", "Order"]
+
     
     var body: some View {
-        Content(date: $date, amount: $amount, transactionType: $transactionType, beneficiary: $beneficiary)
-            .navigationBarTitle(Text("New Transaction"), displayMode: .inline)
-            .navigationBarItems(leading: cancelButton, trailing: addButton)
+        VStack {
+            Picker(selection: $selectedScreen, label: Text("")) {
+                ForEach(Screens.allCases) { screen in
+                    Text(screen.rawValue).tag(screen)
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            Spacer()
+            switch selectedScreen {
+            case .cash:
+                CashContent(data: $cashTransactionData)
+            case .order:
+                OrderContent(orderData: $orderTransactionData)
+            }
+        }
+        .navigationBarTitle(Text("New Transaction"), displayMode: .inline)
+        .navigationBarItems(leading: cancelButton, trailing: addButton)
     }
     
     var cancelButton: some View {
@@ -30,10 +50,14 @@ struct NewTransactionView: View {
     }
     
     func addTransaction() {
-        let amount = Money(from: self.amount)
-        let date = Date.from(self.date)
-        let transaction = CashTransaction(date: date, amount: amount, kind: transactionType, beneficiary: beneficiary)
-        stateController.addCashTransaction(transaction, toDepot: depot)
+        switch selectedScreen {
+        case .cash:
+            let transaction = CashTransaction(from: self.cashTransactionData)
+            stateController.addCashTransaction(transaction, toDepot: depot)
+        case .order:
+            let transaction = OrderTransaction(from: self.orderTransactionData)
+            stateController.addOrderTransaction(transaction, toDepot: depot)
+        }
         dismiss()
     }
     
@@ -43,19 +67,16 @@ struct NewTransactionView: View {
 }
 
 extension NewTransactionView {
-    struct Content: View {
-        @Binding var date: String
-        @Binding var amount: String
-        @Binding var transactionType: CashTransaction.Kind
-        @Binding var beneficiary: String
+    struct CashContent: View {
+        @Binding var data: CashTransaction.Data
         
         var body: some View {
             Form {
-                TextField("Date", text: $date)
+                TextField("Date", text: $data.date)
                     .keyboardType(.numbersAndPunctuation)
-                TextField("Amount", text: $amount)
-                TextField("Beneficiary", text: $beneficiary)
-                Picker(selection: $transactionType, label: Text("Type")) {
+                TextField("Amount", text: $data.amount)
+                TextField("Beneficiary", text: $data.beneficiary)
+                Picker(selection: $data.transactionType, label: Text("Type")) {
                     ForEach(CashTransaction.Kind.allCases) { kind in
                         Text(kind.rawValue).tag(kind)
                     }
@@ -66,11 +87,47 @@ extension NewTransactionView {
     }
 }
 
+extension NewTransactionView {
+    struct OrderContent: View {
+        
+        @Binding var orderData: OrderTransaction.Data
+        
+        var body: some View {
+            Form {
+                Section(header: Text("Security")) {
+                    TextField("Symbol", text: $orderData.security.symbol)
+                    TextField("Name", text: $orderData.security.name)
+                }
+                Section(header: Text("Order details")) {
+                    TextField("Date", text: $orderData.date)
+                    TextField("Amount", text: $orderData.amount)
+                    TextField("Price", text: $orderData.price)
+                    TextField("Fees", text: $orderData.fees)
+                    TextField("Tax", text: $orderData.tax)
+                }
+                Section {
+                    Picker(selection: $orderData.transactionType, label: Text("Type")) {
+                        ForEach(OrderTransaction.Kind.allCases) { kind in
+                            Text(kind.rawValue).tag(kind)
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                }
+            }
+        }
+    }
+}
+
 struct NewTransactionView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            NewTransactionView.Content(date: .constant(""), amount: .constant(""), transactionType: .constant(.income), beneficiary: .constant(""))
-                .navigationBarTitle(Text("New Transaction"), displayMode: .inline)
+        Group {
+            NavigationView {
+                NewTransactionView.CashContent(data: .constant(CashTransaction.Data(date: "", amount: "", transactionType: .income, beneficiary: "")))
+                    .navigationBarTitle(Text("New Transaction"), displayMode: .inline)
+            }
+            NavigationView {
+                NewTransactionView.OrderContent(orderData: .constant(OrderTransaction.Data()))
+            }
         }
     }
 }

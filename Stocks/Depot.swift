@@ -5,6 +5,7 @@ struct Depot: Identifiable, Codable {
     var name: String
     private (set) var balance: Money
     var cashTransactions: [CashTransaction]
+    var orderTransactions: [OrderTransaction]
     
     init(id: UUID = UUID(), name: String, initialBalance: Money) {
         self.id = id
@@ -13,6 +14,7 @@ struct Depot: Identifiable, Codable {
         self.cashTransactions = [
             CashTransaction(date: Date(), amount: initialBalance, kind: .income, beneficiary: "Initial Balance")
         ]
+        self.orderTransactions = []
     }
     
     mutating func addCashTransaction(_ transaction: CashTransaction) {
@@ -23,6 +25,10 @@ struct Depot: Identifiable, Codable {
         case .withdraw:
             balance -= transaction.amount
         }
+    }
+    
+    mutating func addOrderTransaction(_ transaction: OrderTransaction) {
+        self.orderTransactions.append(transaction)
     }
 }
 

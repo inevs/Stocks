@@ -39,12 +39,13 @@ extension DepotView {
             VStack {
                 List {
                     ChangesView()
+                    Text("Balance: \(depot.balance.string())")
+                    Spacer()
+                    Text("Assets")
                     Spacer()
                     NavigationLink(destination: TransactionHistoryView(depot: depot)) {
                         Text("Transaction History")
                     }
-                    Spacer()
-                    Text("Balance: \(depot.balance.string())")
                 }
                 .listStyle(PlainListStyle())
                 Spacer()
