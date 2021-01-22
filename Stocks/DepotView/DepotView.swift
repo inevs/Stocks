@@ -40,7 +40,9 @@ extension DepotView {
                 List {
                     ChangesView()
                     Spacer()
-                    Text("Transaction History >")
+                    NavigationLink(destination: TransactionHistoryView(depot: depot)) {
+                        Text("Transaction History")
+                    }
                     Spacer()
                     Text("Balance: \(depot.balance.string())")
                 }
@@ -57,7 +59,7 @@ extension DepotView {
 struct DepotView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            DepotView.Content(depot: .constant(comdirect), addTransaction: {})
+            DepotView.Content(depot: .constant(TestData.comdirect), addTransaction: {})
         }
     }
 }

@@ -86,7 +86,7 @@ extension PortfolioView.Content {
 struct PortfolioView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PortfolioView.Content(depots: .constant(testDepots), newDepot: {}, deleteDepots: {_ in })
+            PortfolioView.Content(depots: .constant(TestData.testDepots), newDepot: {}, deleteDepots: {_ in })
         }
     }
 }

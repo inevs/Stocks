@@ -10,6 +10,8 @@
 		26393F8625B965F300D9F655 /* CashTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26393F8525B965F300D9F655 /* CashTransaction.swift */; };
 		26393FA225B9D1D500D9F655 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26393FA125B9D1D500D9F655 /* AddButton.swift */; };
 		26393FA725B9D32500D9F655 /* NewTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26393FA625B9D32500D9F655 /* NewTransactionView.swift */; };
+		26393FAC25BAB93E00D9F655 /* TransactionHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26393FAB25BAB93E00D9F655 /* TransactionHistoryView.swift */; };
+		26393FB125BABBE200D9F655 /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26393FB025BABBE200D9F655 /* ModelExtensions.swift */; };
 		26C86D7425B1E7CC00293024 /* StocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86D7325B1E7CC00293024 /* StocksApp.swift */; };
 		26C86D7825B1E7CD00293024 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C86D7725B1E7CD00293024 /* Assets.xcassets */; };
 		26C86D7B25B1E7CD00293024 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C86D7A25B1E7CD00293024 /* Preview Assets.xcassets */; };
@@ -46,6 +48,8 @@
 		26393F8525B965F300D9F655 /* CashTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashTransaction.swift; sourceTree = "<group>"; };
 		26393FA125B9D1D500D9F655 /* AddButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		26393FA625B9D32500D9F655 /* NewTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionView.swift; sourceTree = "<group>"; };
+		26393FAB25BAB93E00D9F655 /* TransactionHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryView.swift; sourceTree = "<group>"; };
+		26393FB025BABBE200D9F655 /* ModelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
 		26C86D7025B1E7CC00293024 /* Stocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C86D7325B1E7CC00293024 /* StocksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksApp.swift; sourceTree = "<group>"; };
 		26C86D7725B1E7CD00293024 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 				26C86DA925B1F6E300293024 /* Money.swift */,
 				26C86DD925B2015D00293024 /* StateController.swift */,
 				26E9522B25B6BF980095EFB2 /* StorageController.swift */,
+				26393FB025BABBE200D9F655 /* ModelExtensions.swift */,
 			);
 			path = Stocks;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 				26393FA125B9D1D500D9F655 /* AddButton.swift */,
 				26C86DE725B2F3A000293024 /* DepotView.swift */,
 				26393FA625B9D32500D9F655 /* NewTransactionView.swift */,
+				26393FAB25BAB93E00D9F655 /* TransactionHistoryView.swift */,
 			);
 			path = DepotView;
 			sourceTree = "<group>";
@@ -314,7 +320,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				26C86DDA25B2015D00293024 /* StateController.swift in Sources */,
+				26393FAC25BAB93E00D9F655 /* TransactionHistoryView.swift in Sources */,
 				26C86DBD25B1F7D100293024 /* PortfolioView.swift in Sources */,
+				26393FB125BABBE200D9F655 /* ModelExtensions.swift in Sources */,
 				26C86DD425B1FB3B00293024 /* NewDepotView.swift in Sources */,
 				26C86DE825B2F3A000293024 /* DepotView.swift in Sources */,
 				26C86D7425B1E7CC00293024 /* StocksApp.swift in Sources */,

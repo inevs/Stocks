@@ -4,7 +4,7 @@ struct NewTransactionView: View {
     @EnvironmentObject private var stateController: StateController
     @Environment(\.presentationMode) private var presentationMode
 
-    @State private var date = ""
+    @State private var date = Date().transactionFormat
     @State private var amount = ""
     @State private var transactionType = CashTransaction.Kind.income
     @State private var beneficiary = ""
@@ -72,12 +72,5 @@ struct NewTransactionView_Previews: PreviewProvider {
             NewTransactionView.Content(date: .constant(""), amount: .constant(""), transactionType: .constant(.income), beneficiary: .constant(""))
                 .navigationBarTitle(Text("New Transaction"), displayMode: .inline)
         }
-    }
-}
-
-extension Date {
-    static func from(_ string: String) -> Date {
-        let dateFormatter = DateFormatter()
-        return dateFormatter.date(from: string) ?? Date()
     }
 }
