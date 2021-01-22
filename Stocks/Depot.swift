@@ -1,13 +1,21 @@
 import Foundation
 
+//typealias SecurityAllocation = (String:Decimal)
+
 struct Depot: Identifiable, Codable {
     let id: UUID
     var name: String
-    private (set) var balance: Money
     var cashTransactions: [CashTransaction]
     var orderTransactions: [OrderTransaction]
-    var securities: [String: Decimal]
+    private (set) var securities: [String: Decimal]
+    private (set) var balance: Money
     
+    var securityAllocations: [SecurityAllocation] {
+        securities.map { symbol, amount in
+            SecurityAllocation(symbol: symbol, amount: amount)
+        }
+    }
+
     init(id: UUID = UUID(), name: String, initialBalance: Money) {
         self.id = id
         self.name = name
@@ -55,3 +63,11 @@ extension Depot {
         balance
     }
 }
+
+struct SecurityAllocation: Identifiable {
+    let symbol: String
+    let amount: Decimal
+    
+    var id: String { symbol }
+}
+

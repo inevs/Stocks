@@ -41,7 +41,9 @@ extension DepotView {
                     ChangesView()
                     Text("Balance: \(depot.balance.string())")
                     Spacer()
-                    Text("Assets")
+                    ForEach(depot.securityAllocations) { allocation in
+                        Text("\(allocation.amount.string()) \(allocation.symbol)")
+                    }
                     Spacer()
                     NavigationLink(destination: TransactionHistoryView(depot: depot)) {
                         Text("Transaction History")
@@ -53,7 +55,7 @@ extension DepotView {
             }
                 
             .navigationBarTitle(Text(depot.name), displayMode: .inline)
-        }
+        }        
     }
 }
 
