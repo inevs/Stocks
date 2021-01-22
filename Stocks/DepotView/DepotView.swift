@@ -11,7 +11,7 @@ struct DepotView: View {
         }
         .sheet(isPresented: $addingTransaction) {
             NavigationView {
-                NewTransactionView(add: add, cancel: dismiss)
+                NewTransactionView(depot: depot)
             }
             .environmentObject(self.stateController)
         }
@@ -20,15 +20,7 @@ struct DepotView: View {
     func newTransaction() {
         addingTransaction = true
     }
-    
-    func add() {
-        dismiss()
-    }
-    
-    func dismiss() {
-        addingTransaction = false
-    }
-    
+        
     private func binding(for depot: Depot) -> Binding<Depot> {
         guard let depotIndex = stateController.depots.firstIndex(where: { $0.id == depot.id }) else {
             fatalError("Can't find depot in array")
@@ -50,7 +42,7 @@ extension DepotView {
                     Spacer()
                     Text("Transaction History >")
                     Spacer()
-                    Text("Balance: 7800 EUR")
+                    Text("Balance: \(depot.balance.string())")
                 }
                 .listStyle(PlainListStyle())
                 Spacer()

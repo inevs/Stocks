@@ -2,14 +2,14 @@ import SwiftUI
 
 struct NewTransactionView: View {
     @EnvironmentObject private var stateController: StateController
+    @Environment(\.presentationMode) private var presentationMode
 
     @State private var date = ""
     @State private var amount = ""
     @State private var transactionType = CashTransaction.Kind.income
     
-    let add: () -> Void
-    let cancel: () -> Void
-
+    let depot: Depot
+    
     var body: some View {
         Content(date: $date, amount: $amount, transactionType: $transactionType)
             .navigationBarTitle(Text("New Transaction"), displayMode: .inline)
@@ -17,15 +17,27 @@ struct NewTransactionView: View {
     }
     
     var cancelButton: some View {
-        Button(action: cancel) {
+        Button(action: dismiss) {
             Text("Cancel")
         }
     }
     
     var addButton: some View {
-        Button(action: add) {
+        Button(action: addTransaction) {
             Text("Add")
         }
+    }
+    
+    func addTransaction() {
+        let amount = Money(from: self.amount)
+        let date = Date.from(self.date)
+        let transaction = CashTransaction(date: date, amount: amount, kind: transactionType)
+        stateController.addCashTransaction(transaction, toDepot: depot)
+        dismiss()
+    }
+    
+    func dismiss() {
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
@@ -55,6 +67,14 @@ struct NewTransactionView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             NewTransactionView.Content(date: .constant(""), amount: .constant(""), transactionType: .constant(.income))
+                .navigationBarTitle(Text("New Transaction"), displayMode: .inline)
         }
+    }
+}
+
+extension Date {
+    static func from(_ string: String) -> Date {
+        let dateFormatter = DateFormatter()
+        return dateFormatter.date(from: string) ?? Date()
     }
 }
