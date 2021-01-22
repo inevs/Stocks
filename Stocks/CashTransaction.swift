@@ -12,11 +12,13 @@ struct CashTransaction: Codable, Identifiable {
     let date: Date
     let amount: Money
     let kind: Kind
+    let beneficiary: String
 
-    init(id: UUID = UUID(), date: Date, amount: Money, kind: Kind) {
+    init(id: UUID = UUID(), date: Date, amount: Money, kind: Kind, beneficiary: String) {
         self.id = id
         self.date = date
         self.amount = amount
         self.kind = kind
+        self.beneficiary = beneficiary
     }
 }

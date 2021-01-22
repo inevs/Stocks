@@ -11,7 +11,7 @@ struct Depot: Identifiable, Codable {
         self.name = name
         self.balance = initialBalance
         self.cashTransactions = [
-            CashTransaction(date: Date(), amount: initialBalance, kind: .income)
+            CashTransaction(date: Date(), amount: initialBalance, kind: .income, beneficiary: "Initial Balance")
         ]
     }
     

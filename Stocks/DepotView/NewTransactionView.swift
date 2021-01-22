@@ -7,11 +7,12 @@ struct NewTransactionView: View {
     @State private var date = ""
     @State private var amount = ""
     @State private var transactionType = CashTransaction.Kind.income
+    @State private var beneficiary = ""
     
     let depot: Depot
     
     var body: some View {
-        Content(date: $date, amount: $amount, transactionType: $transactionType)
+        Content(date: $date, amount: $amount, transactionType: $transactionType, beneficiary: $beneficiary)
             .navigationBarTitle(Text("New Transaction"), displayMode: .inline)
             .navigationBarItems(leading: cancelButton, trailing: addButton)
     }
@@ -31,7 +32,7 @@ struct NewTransactionView: View {
     func addTransaction() {
         let amount = Money(from: self.amount)
         let date = Date.from(self.date)
-        let transaction = CashTransaction(date: date, amount: amount, kind: transactionType)
+        let transaction = CashTransaction(date: date, amount: amount, kind: transactionType, beneficiary: beneficiary)
         stateController.addCashTransaction(transaction, toDepot: depot)
         dismiss()
     }
@@ -46,12 +47,14 @@ extension NewTransactionView {
         @Binding var date: String
         @Binding var amount: String
         @Binding var transactionType: CashTransaction.Kind
+        @Binding var beneficiary: String
         
         var body: some View {
             Form {
                 TextField("Date", text: $date)
                     .keyboardType(.numbersAndPunctuation)
                 TextField("Amount", text: $amount)
+                TextField("Beneficiary", text: $beneficiary)
                 Picker(selection: $transactionType, label: Text("Type")) {
                     ForEach(CashTransaction.Kind.allCases) { kind in
                         Text(kind.rawValue).tag(kind)
@@ -66,7 +69,7 @@ extension NewTransactionView {
 struct NewTransactionView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            NewTransactionView.Content(date: .constant(""), amount: .constant(""), transactionType: .constant(.income))
+            NewTransactionView.Content(date: .constant(""), amount: .constant(""), transactionType: .constant(.income), beneficiary: .constant(""))
                 .navigationBarTitle(Text("New Transaction"), displayMode: .inline)
         }
     }
