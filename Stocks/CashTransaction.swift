@@ -21,6 +21,20 @@ struct CashTransaction: Codable, Identifiable {
         self.kind = kind
         self.beneficiary = beneficiary
     }
+    
+    init(from order: OrderTransaction) {
+        self.id = UUID()
+        self.date = order.date
+        self.amount = order.amount * order.price + order.fees + order.tax
+        switch order.kind {
+        case .buy:
+            self.kind = .withdraw
+            self.beneficiary = "Buy \(order.security.name)"
+        case .sell:
+            self.kind = .income
+            self.beneficiary = "Sell \(order.security.name)"
+        }
+    }
 }
 
 extension CashTransaction {
