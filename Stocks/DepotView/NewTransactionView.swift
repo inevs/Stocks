@@ -9,7 +9,7 @@ struct NewTransactionView: View {
     @EnvironmentObject private var stateController: StateController
     @Environment(\.presentationMode) private var presentationMode
 
-    @State private var cashTransactionData = CashTransaction.Data(date: Date().transactionFormat, amount: "", transactionType: .income, beneficiary: "")
+    @State private var cashTransactionData = CashTransaction.Data()
     @State private var orderTransactionData = OrderTransaction.Data()
     @State private var selectedScreen = Screens.cash
 
@@ -89,7 +89,6 @@ extension NewTransactionView {
 
 extension NewTransactionView {
     struct OrderContent: View {
-        
         @Binding var orderData: OrderTransaction.Data
         
         var body: some View {
@@ -122,7 +121,7 @@ struct NewTransactionView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                NewTransactionView.CashContent(data: .constant(CashTransaction.Data(date: "", amount: "", transactionType: .income, beneficiary: "")))
+                NewTransactionView.CashContent(data: .constant(CashTransaction.Data()))
                     .navigationBarTitle(Text("New Transaction"), displayMode: .inline)
             }
             NavigationView {

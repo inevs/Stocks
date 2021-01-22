@@ -43,6 +43,13 @@ extension CashTransaction {
         var amount: String
         var transactionType: CashTransaction.Kind
         var beneficiary: String
+        
+        init() {
+            self.date = Date().transactionFormat
+            self.amount = ""
+            self.transactionType = .income
+            self.beneficiary = ""
+        }
     }
     
     init(from data: Data) {

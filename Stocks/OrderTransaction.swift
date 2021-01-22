@@ -44,7 +44,7 @@ extension OrderTransaction {
         var transactionType: OrderTransaction.Kind
         
         init() {
-            date = ""
+            date = Date().transactionFormat
             security = SecurityData(symbol: "", name: "")
             amount = ""
             price = ""
