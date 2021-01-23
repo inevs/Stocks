@@ -37,10 +37,12 @@ extension DepotView {
         
         var body: some View {
             VStack {
+                ChangesView()
+                    .frame(height: 100.0)
+                Spacer()
+                Text("Balance: \(depot.balance.string())")
+                Spacer()
                 List {
-                    ChangesView()
-                    Text("Balance: \(depot.balance.string())")
-                    Spacer()
                     ForEach(depot.securityAllocations) { allocation in
                         Text("\(allocation.amount.string()) \(allocation.symbol)")
                     }
