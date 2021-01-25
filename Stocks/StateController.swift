@@ -1,41 +1,37 @@
 import Foundation
 
 class StateController: ObservableObject {
-    @Published var depots: [Depot]
+    @Published var portfolio: Portfolio
     
     private let storageController = StorageController()
     
-    init(depots: [Depot] = []) {
-        if depots.count == 0 {
-            self.depots = storageController.fetchDepots()
-        } else {
-            self.depots = depots
-        }
+    init(portfolio: Portfolio = Portfolio()) {
+        self.portfolio = storageController.fetchPortfolio()
     }
     
     func addDepot(named name: String, withCash cash: String) {
         let depot = Depot(name: name, initialBalance: Money(from: cash))
-        depots.append(depot)
-        storageController.save(depots)
+        portfolio.depots.append(depot)
+        storageController.save(portfolio)
     }
     
     func deleteDepots(atIndexSet indexSet: IndexSet) {
         indexSet.forEach { index in
-            depots.remove(at: index)
+            portfolio.depots.remove(at: index)
         }
-        storageController.save(depots)
+        storageController.save(portfolio)
     }
     
     func addCashTransaction(_ transaction: CashTransaction, toDepot depot: Depot) {
-        guard let depotIndex = depots.firstIndex(where: { $0.id == depot.id }) else { return }        
-        depots[depotIndex].addCashTransaction(transaction)
-        storageController.save(depots)
+        guard let depotIndex = portfolio.depots.firstIndex(where: { $0.id == depot.id }) else { return }
+        portfolio.depots[depotIndex].addCashTransaction(transaction)
+        storageController.save(portfolio)
     }
 
     func addOrderTransaction(_ transaction: OrderTransaction, toDepot depot: Depot) {
-        guard let depotIndex = depots.firstIndex(where: { $0.id == depot.id }) else { return }
-        depots[depotIndex].addOrderTransaction(transaction)
-        storageController.save(depots)
+        guard let depotIndex = portfolio.depots.firstIndex(where: { $0.id == depot.id }) else { return }
+        portfolio.depots[depotIndex].addOrderTransaction(transaction)
+        storageController.save(portfolio)
     }
 
 }

@@ -13,6 +13,7 @@
 		26393FAC25BAB93E00D9F655 /* TransactionHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26393FAB25BAB93E00D9F655 /* TransactionHistoryView.swift */; };
 		26393FB125BABBE200D9F655 /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26393FB025BABBE200D9F655 /* ModelExtensions.swift */; };
 		26C2C67B25BADC4400CC7F08 /* OrderTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C2C67A25BADC4400CC7F08 /* OrderTransaction.swift */; };
+		26C2C68325BEA8A100CC7F08 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C2C68225BEA8A100CC7F08 /* Portfolio.swift */; };
 		26C86D7425B1E7CC00293024 /* StocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86D7325B1E7CC00293024 /* StocksApp.swift */; };
 		26C86D7825B1E7CD00293024 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C86D7725B1E7CD00293024 /* Assets.xcassets */; };
 		26C86D7B25B1E7CD00293024 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C86D7A25B1E7CD00293024 /* Preview Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		26393FAB25BAB93E00D9F655 /* TransactionHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryView.swift; sourceTree = "<group>"; };
 		26393FB025BABBE200D9F655 /* ModelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
 		26C2C67A25BADC4400CC7F08 /* OrderTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTransaction.swift; sourceTree = "<group>"; };
+		26C2C68225BEA8A100CC7F08 /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
 		26C86D7025B1E7CC00293024 /* Stocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C86D7325B1E7CC00293024 /* StocksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksApp.swift; sourceTree = "<group>"; };
 		26C86D7725B1E7CD00293024 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				26C86DD925B2015D00293024 /* StateController.swift */,
 				26E9522B25B6BF980095EFB2 /* StorageController.swift */,
 				26393FB025BABBE200D9F655 /* ModelExtensions.swift */,
+				26C2C68225BEA8A100CC7F08 /* Portfolio.swift */,
 			);
 			path = Stocks;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				26C86DE825B2F3A000293024 /* DepotView.swift in Sources */,
 				26C86D7425B1E7CC00293024 /* StocksApp.swift in Sources */,
 				26C86DAA25B1F6E300293024 /* Money.swift in Sources */,
+				26C2C68325BEA8A100CC7F08 /* Portfolio.swift in Sources */,
 				26393FA725B9D32500D9F655 /* NewTransactionView.swift in Sources */,
 				26393FA225B9D1D500D9F655 /* AddButton.swift in Sources */,
 				26E9522C25B6BF980095EFB2 /* StorageController.swift in Sources */,

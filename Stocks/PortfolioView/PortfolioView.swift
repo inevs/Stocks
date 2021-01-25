@@ -6,7 +6,7 @@ struct PortfolioView: View {
 
     var body: some View {
         NavigationView {
-            Content(depots: $stateController.depots, newDepot: { self.addingDepot = true }, deleteDepots: deleteDepots)
+            Content(depots: $stateController.portfolio.depots, newDepot: { self.addingDepot = true }, deleteDepots: deleteDepots)
         }
         .sheet(isPresented: $addingDepot) {
             NavigationView {

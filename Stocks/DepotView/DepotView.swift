@@ -22,10 +22,10 @@ struct DepotView: View {
     }
         
     private func binding(for depot: Depot) -> Binding<Depot> {
-        guard let depotIndex = stateController.depots.firstIndex(where: { $0.id == depot.id }) else {
+        guard let depotIndex = stateController.portfolio.depots.firstIndex(where: { $0.id == depot.id }) else {
             fatalError("Can't find depot in array")
         }
-        return $stateController.depots[depotIndex]
+        return $stateController.portfolio.depots[depotIndex]
     }
 
 }
