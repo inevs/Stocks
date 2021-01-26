@@ -130,6 +130,7 @@
 				26C86DB425B1F78D00293024 /* Mock */,
 				26C86DBB25B1F7BC00293024 /* PortfolioView */,
 				26C86DE625B2F38C00293024 /* DepotView */,
+				26C2C68225BEA8A100CC7F08 /* Portfolio.swift */,
 				26C86DA125B1F6CA00293024 /* Depot.swift */,
 				26393F8525B965F300D9F655 /* CashTransaction.swift */,
 				26C2C67A25BADC4400CC7F08 /* OrderTransaction.swift */,
@@ -137,7 +138,6 @@
 				26C86DD925B2015D00293024 /* StateController.swift */,
 				26E9522B25B6BF980095EFB2 /* StorageController.swift */,
 				26393FB025BABBE200D9F655 /* ModelExtensions.swift */,
-				26C2C68225BEA8A100CC7F08 /* Portfolio.swift */,
 			);
 			path = Stocks;
 			sourceTree = "<group>";
