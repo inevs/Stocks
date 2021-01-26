@@ -14,6 +14,7 @@
 		26393FB125BABBE200D9F655 /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26393FB025BABBE200D9F655 /* ModelExtensions.swift */; };
 		26C2C67B25BADC4400CC7F08 /* OrderTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C2C67A25BADC4400CC7F08 /* OrderTransaction.swift */; };
 		26C2C68325BEA8A100CC7F08 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C2C68225BEA8A100CC7F08 /* Portfolio.swift */; };
+		26C2C68E25BFF9F000CC7F08 /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C2C68D25BFF9F000CC7F08 /* Security.swift */; };
 		26C86D7425B1E7CC00293024 /* StocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86D7325B1E7CC00293024 /* StocksApp.swift */; };
 		26C86D7825B1E7CD00293024 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C86D7725B1E7CD00293024 /* Assets.xcassets */; };
 		26C86D7B25B1E7CD00293024 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C86D7A25B1E7CD00293024 /* Preview Assets.xcassets */; };
@@ -54,6 +55,7 @@
 		26393FB025BABBE200D9F655 /* ModelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
 		26C2C67A25BADC4400CC7F08 /* OrderTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTransaction.swift; sourceTree = "<group>"; };
 		26C2C68225BEA8A100CC7F08 /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
+		26C2C68D25BFF9F000CC7F08 /* Security.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Security.swift; sourceTree = "<group>"; };
 		26C86D7025B1E7CC00293024 /* Stocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C86D7325B1E7CC00293024 /* StocksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksApp.swift; sourceTree = "<group>"; };
 		26C86D7725B1E7CD00293024 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				26C86DE625B2F38C00293024 /* DepotView */,
 				26C2C68225BEA8A100CC7F08 /* Portfolio.swift */,
 				26C86DA125B1F6CA00293024 /* Depot.swift */,
+				26C2C68D25BFF9F000CC7F08 /* Security.swift */,
 				26393F8525B965F300D9F655 /* CashTransaction.swift */,
 				26C2C67A25BADC4400CC7F08 /* OrderTransaction.swift */,
 				26C86DA925B1F6E300293024 /* Money.swift */,
@@ -325,6 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26C2C68E25BFF9F000CC7F08 /* Security.swift in Sources */,
 				26C86DDA25B2015D00293024 /* StateController.swift in Sources */,
 				26393FAC25BAB93E00D9F655 /* TransactionHistoryView.swift in Sources */,
 				26C86DBD25B1F7D100293024 /* PortfolioView.swift in Sources */,

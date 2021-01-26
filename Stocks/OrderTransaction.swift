@@ -31,12 +31,8 @@ struct OrderTransaction: Codable, Identifiable {
 
 extension OrderTransaction {
     struct Data {
-        struct SecurityData {
-            var symbol: String
-            var name: String
-        }
         var date: String
-        var security: SecurityData
+        var security: Security.SecurityData
         var amount: String
         var price: String
         var fees: String
@@ -45,7 +41,7 @@ extension OrderTransaction {
         
         init() {
             date = Date().transactionFormat
-            security = SecurityData(symbol: "", name: "")
+            security = Security.SecurityData(symbol: "", name: "")
             amount = ""
             price = ""
             fees = ""
@@ -65,16 +61,3 @@ extension OrderTransaction {
         self.fees = Money(from: data.tax)
     }
 }
-
-struct Security: Codable, Identifiable {
-    let id: UUID
-    let symbol: String
-    let name: String
-    
-    init(symbol: String, name: String) {
-        self.id = UUID()
-        self.symbol = symbol
-        self.name = name
-    }
-}
-
