@@ -1,18 +1,16 @@
 import Foundation
 
-//typealias SecurityAllocation = (String:Decimal)
-
 struct Depot: Identifiable, Codable {
     let id: UUID
     var name: String
     var cashTransactions: [CashTransaction]
     var orderTransactions: [OrderTransaction]
-    private (set) var securities: [String: Decimal]
+    private (set) var securities: [Security: Decimal]
     private (set) var balance: Money
     
     var securityAllocations: [SecurityAllocation] {
-        securities.map { symbol, amount in
-            SecurityAllocation(symbol: symbol, amount: amount)
+        securities.map { security, amount in
+            SecurityAllocation(amount: amount, security: security)
         }
     }
 
@@ -39,8 +37,8 @@ struct Depot: Identifiable, Codable {
     
     mutating func addOrderTransaction(_ transaction: OrderTransaction) {
         self.orderTransactions.append(transaction)
-        let symbol = transaction.security.symbol
-        let amount = securities[symbol] ?? 0.0
+        let security = transaction.security
+        let amount = securities[security] ?? 0.0
         let newAmount: Decimal
         switch transaction.kind {
         case .buy:
@@ -51,7 +49,7 @@ struct Depot: Identifiable, Codable {
         if newAmount < 0.0 {
             print("Error: selling too much")
         } else {
-            securities[symbol] = newAmount
+            securities[security] = newAmount
             let cashTransaction = CashTransaction(from: transaction)
             addCashTransaction(cashTransaction)
         }
@@ -65,9 +63,9 @@ extension Depot {
 }
 
 struct SecurityAllocation: Identifiable {
-    let symbol: String
     let amount: Decimal
+    let security: Security
     
-    var id: String { symbol }
+    var id: String { security.symbol }
 }
 

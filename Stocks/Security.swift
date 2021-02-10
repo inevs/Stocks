@@ -1,6 +1,6 @@
 import Foundation
 
-struct Security: Codable, Identifiable {
+struct Security: Codable, Identifiable, Hashable {
     let id: UUID
     let symbol: String
     let name: String
@@ -9,6 +9,10 @@ struct Security: Codable, Identifiable {
         self.id = UUID()
         self.symbol = symbol
         self.name = name
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(symbol)
     }
 }
 

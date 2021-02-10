@@ -55,7 +55,8 @@ struct NewTransactionView: View {
             let transaction = CashTransaction(from: self.cashTransactionData)
             stateController.addCashTransaction(transaction, toDepot: depot)
         case .order:
-            let transaction = OrderTransaction(from: self.orderTransactionData)
+            let security = Security(symbol: self.orderTransactionData.security.symbol, name: self.orderTransactionData.security.name)
+            let transaction = OrderTransaction(from: self.orderTransactionData, security: security)
             stateController.addOrderTransaction(transaction, toDepot: depot)
         }
         dismiss()

@@ -44,7 +44,7 @@ extension DepotView {
                 Spacer()
                 List {
                     ForEach(depot.securityAllocations) { allocation in
-                        Text("\(allocation.amount.string()) \(allocation.symbol)")
+                        Text("\(allocation.amount.string()) \(allocation.security.symbol)")
                     }
                     Spacer()
                     NavigationLink(destination: TransactionHistoryView(depot: depot)) {

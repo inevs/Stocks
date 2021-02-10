@@ -50,12 +50,12 @@ extension OrderTransaction {
         }
     }
     
-    init(from data: Data) {
+    init(from data: Data, security: Security) {
         self.id = UUID()
         self.date = Date.from(data.date)
         self.amount = Decimal(from: data.amount)
         self.kind = data.transactionType
-        self.security = Security(symbol: data.security.symbol, name: data.security.name)
+        self.security = security
         self.price = Money(from: data.price)
         self.tax = Money(from: data.tax)
         self.fees = Money(from: data.tax)
