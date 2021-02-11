@@ -5,15 +5,9 @@ struct Depot: Identifiable, Codable {
     var name: String
     var cashTransactions: [CashTransaction]
     var orderTransactions: [OrderTransaction]
-    private (set) var securities: [Security: Decimal]
     private (set) var balance: Money
+    private (set) var securityAllocations: [SecurityAllocation]
     
-    var securityAllocations: [SecurityAllocation] {
-        securities.map { security, amount in
-            SecurityAllocation(amount: amount, security: security)
-        }
-    }
-
     init(id: UUID = UUID(), name: String, initialBalance: Money) {
         self.id = id
         self.name = name
@@ -22,7 +16,7 @@ struct Depot: Identifiable, Codable {
             CashTransaction(date: Date(), amount: initialBalance, kind: .income, beneficiary: "Initial Balance")
         ]
         self.orderTransactions = []
-        self.securities = [:]
+        self.securityAllocations = []
     }
     
     mutating func addCashTransaction(_ transaction: CashTransaction) {
@@ -38,7 +32,8 @@ struct Depot: Identifiable, Codable {
     mutating func addOrderTransaction(_ transaction: OrderTransaction) {
         self.orderTransactions.append(transaction)
         let security = transaction.security
-        let amount = securities[security] ?? 0.0
+        let securityAllocation = allocation(for: security) ?? SecurityAllocation(amount: 0.0, security: security)
+        let amount = securityAllocation.amount
         let newAmount: Decimal
         switch transaction.kind {
         case .buy:
@@ -49,10 +44,17 @@ struct Depot: Identifiable, Codable {
         if newAmount < 0.0 {
             print("Error: selling too much")
         } else {
-            securities[security] = newAmount
+            if let index = securityAllocations.firstIndex(of: securityAllocation) {
+                securityAllocations.remove(at: index)
+            }
+            securityAllocations.append(SecurityAllocation(amount: newAmount, security: security))
             let cashTransaction = CashTransaction(from: transaction)
             addCashTransaction(cashTransaction)
         }
+    }
+    
+    func allocation(for security: Security) -> SecurityAllocation? {
+        return securityAllocations.first(where: { $0.security == security })
     }
 }
 
@@ -62,10 +64,14 @@ extension Depot {
     }
 }
 
-struct SecurityAllocation: Identifiable {
+struct SecurityAllocation: Identifiable, Codable, Equatable {
     let amount: Decimal
     let security: Security
     
     var id: String { security.symbol }
+    
+    static func ==(lhs: SecurityAllocation, rhs: SecurityAllocation) -> Bool {
+        return lhs.security == rhs.security && lhs.amount == rhs.amount
+    }
 }
 

@@ -1,6 +1,6 @@
 import Foundation
 
-struct Security: Codable, Identifiable, Hashable {
+struct Security: Codable, Identifiable, Hashable, Equatable {
     let id: UUID
     let symbol: String
     let name: String
@@ -13,6 +13,10 @@ struct Security: Codable, Identifiable, Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(symbol)
+    }
+    
+    static func ==(lhs: Security, rhs: Security) -> Bool {
+        return rhs.symbol == lhs.symbol
     }
 }
 
