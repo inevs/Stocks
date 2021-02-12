@@ -27,6 +27,12 @@ struct Portfolio: Codable {
         guard let depotIndex = depots.firstIndex(where: { $0.id == depot.id }) else { return }
         depots[depotIndex].addOrderTransaction(transaction)
     }
+    
+    mutating func update(security: Security, withPrice price: Money) {
+        for index in 0...depots.count {
+            depots[index].update(security: security, withPrice: price)
+        }
+    }
 
 }
     

@@ -27,6 +27,7 @@
 		26C86DD425B1FB3B00293024 /* NewDepotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DD325B1FB3B00293024 /* NewDepotView.swift */; };
 		26C86DDA25B2015D00293024 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DD925B2015D00293024 /* StateController.swift */; };
 		26C86DE825B2F3A000293024 /* DepotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DE725B2F3A000293024 /* DepotView.swift */; };
+		26D400A825D66876003FD7C5 /* PortfolioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D400A725D66876003FD7C5 /* PortfolioTests.swift */; };
 		26E9522C25B6BF980095EFB2 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9522B25B6BF980095EFB2 /* StorageController.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		26C86DD325B1FB3B00293024 /* NewDepotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDepotView.swift; sourceTree = "<group>"; };
 		26C86DD925B2015D00293024 /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
 		26C86DE725B2F3A000293024 /* DepotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepotView.swift; sourceTree = "<group>"; };
+		26D400A725D66876003FD7C5 /* PortfolioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTests.swift; sourceTree = "<group>"; };
 		26E9522B25B6BF980095EFB2 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,6 +158,7 @@
 		26C86D8425B1E7CD00293024 /* StocksTests */ = {
 			isa = PBXGroup;
 			children = (
+				26D400A725D66876003FD7C5 /* PortfolioTests.swift */,
 				26C86D8525B1E7CD00293024 /* DepotTests.swift */,
 				26C86D8725B1E7CD00293024 /* Info.plist */,
 			);
@@ -352,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26D400A825D66876003FD7C5 /* PortfolioTests.swift in Sources */,
 				26C86D8625B1E7CD00293024 /* DepotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

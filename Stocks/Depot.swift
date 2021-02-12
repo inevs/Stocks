@@ -31,7 +31,8 @@ struct Depot: Identifiable, Codable {
     
     mutating func addOrderTransaction(_ transaction: OrderTransaction) {
         self.orderTransactions.append(transaction)
-        let security = transaction.security
+        var security = transaction.security
+        security.latestPrice = transaction.price
         let securityAllocation = allocation(for: security) ?? SecurityAllocation(amount: 0.0, security: security)
         let amount = securityAllocation.amount
         let newAmount: Decimal
@@ -47,9 +48,17 @@ struct Depot: Identifiable, Codable {
             if let index = securityAllocations.firstIndex(of: securityAllocation) {
                 securityAllocations.remove(at: index)
             }
-            securityAllocations.append(SecurityAllocation(amount: newAmount, security: security))
+            if newAmount > 0 {
+                securityAllocations.append(SecurityAllocation(amount: newAmount, security: security))
+            }
             let cashTransaction = CashTransaction(from: transaction)
             addCashTransaction(cashTransaction)
+        }
+    }
+    
+    mutating func update(security: Security, withPrice price: Money) {
+        for index in 0...securityAllocations.count {
+            securityAllocations[index].security.latestPrice = price
         }
     }
     
@@ -60,13 +69,19 @@ struct Depot: Identifiable, Codable {
 
 extension Depot {
     var currentValue: Money {
-        balance
+        var value = Money.zero
+        securityAllocations.forEach { allocation in
+            let securityValue = allocation.security.latestPrice * allocation.amount
+            value += securityValue
+        }
+        value += balance
+        return value
     }
 }
 
 struct SecurityAllocation: Identifiable, Codable, Equatable {
     let amount: Decimal
-    let security: Security
+    var security: Security
     
     var id: String { security.symbol }
     
