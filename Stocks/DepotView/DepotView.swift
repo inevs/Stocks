@@ -44,7 +44,11 @@ extension DepotView {
                 Spacer()
                 List {
                     ForEach(depot.securityAllocations) { allocation in
-                        Text("\(allocation.amount.string()) \(allocation.security.symbol)")
+                        HStack {
+                            Text("\(allocation.amount.string()) \(allocation.security.symbol)")
+                            Spacer()
+                            Text("\(allocation.security.latestPrice.string())")
+                        }
                     }
                     Spacer()
                     NavigationLink(destination: TransactionHistoryView(depot: depot)) {

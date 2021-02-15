@@ -12,6 +12,7 @@
 		26393FA725B9D32500D9F655 /* NewTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26393FA625B9D32500D9F655 /* NewTransactionView.swift */; };
 		26393FAC25BAB93E00D9F655 /* TransactionHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26393FAB25BAB93E00D9F655 /* TransactionHistoryView.swift */; };
 		26393FB125BABBE200D9F655 /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26393FB025BABBE200D9F655 /* ModelExtensions.swift */; };
+		267B255525D6C619002F0657 /* api-keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 267B255425D6C619002F0657 /* api-keys.plist */; };
 		26C2C67B25BADC4400CC7F08 /* OrderTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C2C67A25BADC4400CC7F08 /* OrderTransaction.swift */; };
 		26C2C68325BEA8A100CC7F08 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C2C68225BEA8A100CC7F08 /* Portfolio.swift */; };
 		26C2C68E25BFF9F000CC7F08 /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C2C68D25BFF9F000CC7F08 /* Security.swift */; };
@@ -29,6 +30,10 @@
 		26C86DE825B2F3A000293024 /* DepotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C86DE725B2F3A000293024 /* DepotView.swift */; };
 		26D400A825D66876003FD7C5 /* PortfolioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D400A725D66876003FD7C5 /* PortfolioTests.swift */; };
 		26E9522C25B6BF980095EFB2 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9522B25B6BF980095EFB2 /* StorageController.swift */; };
+		360E4181EA4B2B75C4791EF3 /* api-keys.plist.template in Resources */ = {isa = PBXBuildFile; fileRef = 360E46840E52074C7B8E45A0 /* api-keys.plist.template */; };
+		360E45254EE7C9A016461D5F /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E4CF6AA29FDA1579A2F12 /* WebService.swift */; };
+		360E46557FD088E4E86598C2 /* YahooFinanceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E4FA2B4020C378A97E1B4 /* YahooFinanceAPI.swift */; };
+		360E4ECDD345314D02A8B7DF /* FinanceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E42155272DF8C3B6E34F6 /* FinanceAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +59,7 @@
 		26393FA625B9D32500D9F655 /* NewTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionView.swift; sourceTree = "<group>"; };
 		26393FAB25BAB93E00D9F655 /* TransactionHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryView.swift; sourceTree = "<group>"; };
 		26393FB025BABBE200D9F655 /* ModelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
+		267B255425D6C619002F0657 /* api-keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "api-keys.plist"; sourceTree = "<group>"; };
 		26C2C67A25BADC4400CC7F08 /* OrderTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTransaction.swift; sourceTree = "<group>"; };
 		26C2C68225BEA8A100CC7F08 /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
 		26C2C68D25BFF9F000CC7F08 /* Security.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Security.swift; sourceTree = "<group>"; };
@@ -77,6 +83,10 @@
 		26C86DE725B2F3A000293024 /* DepotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepotView.swift; sourceTree = "<group>"; };
 		26D400A725D66876003FD7C5 /* PortfolioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTests.swift; sourceTree = "<group>"; };
 		26E9522B25B6BF980095EFB2 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
+		360E42155272DF8C3B6E34F6 /* FinanceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceAPI.swift; sourceTree = "<group>"; };
+		360E46840E52074C7B8E45A0 /* api-keys.plist.template */ = {isa = PBXFileReference; lastKnownFileType = file.template; path = "api-keys.plist.template"; sourceTree = "<group>"; };
+		360E4CF6AA29FDA1579A2F12 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		360E4FA2B4020C378A97E1B4 /* YahooFinanceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YahooFinanceAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +137,8 @@
 		26C86D7225B1E7CC00293024 /* Stocks */ = {
 			isa = PBXGroup;
 			children = (
+				267B255425D6C619002F0657 /* api-keys.plist */,
+				360E46840E52074C7B8E45A0 /* api-keys.plist.template */,
 				26C86D7925B1E7CD00293024 /* Preview Content */,
 				26C86D7325B1E7CC00293024 /* StocksApp.swift */,
 				26C86D7725B1E7CD00293024 /* Assets.xcassets */,
@@ -143,6 +155,7 @@
 				26C86DD925B2015D00293024 /* StateController.swift */,
 				26E9522B25B6BF980095EFB2 /* StorageController.swift */,
 				26393FB025BABBE200D9F655 /* ModelExtensions.swift */,
+				360E458905C3D541857BA7C2 /* Finance */,
 			);
 			path = Stocks;
 			sourceTree = "<group>";
@@ -200,6 +213,16 @@
 				26393FAB25BAB93E00D9F655 /* TransactionHistoryView.swift */,
 			);
 			path = DepotView;
+			sourceTree = "<group>";
+		};
+		360E458905C3D541857BA7C2 /* Finance */ = {
+			isa = PBXGroup;
+			children = (
+				360E42155272DF8C3B6E34F6 /* FinanceAPI.swift */,
+				360E4FA2B4020C378A97E1B4 /* YahooFinanceAPI.swift */,
+				360E4CF6AA29FDA1579A2F12 /* WebService.swift */,
+			);
+			path = Finance;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +330,8 @@
 			files = (
 				26C86D7B25B1E7CD00293024 /* Preview Assets.xcassets in Resources */,
 				26C86D7825B1E7CD00293024 /* Assets.xcassets in Resources */,
+				360E4181EA4B2B75C4791EF3 /* api-keys.plist.template in Resources */,
+				267B255525D6C619002F0657 /* api-keys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +373,9 @@
 				26C86DB025B1F78900293024 /* TestData.swift in Sources */,
 				26C86DA225B1F6CA00293024 /* Depot.swift in Sources */,
 				26393F8625B965F300D9F655 /* CashTransaction.swift in Sources */,
+				360E4ECDD345314D02A8B7DF /* FinanceAPI.swift in Sources */,
+				360E46557FD088E4E86598C2 /* YahooFinanceAPI.swift in Sources */,
+				360E45254EE7C9A016461D5F /* WebService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

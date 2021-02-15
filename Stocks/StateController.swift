@@ -29,4 +29,19 @@ class StateController: ObservableObject {
         storageController.save(portfolio)
     }
 
+    func updateQuotes() {
+        let financeAPI = FinanceAPI.shared
+        let securities = portfolio.allSecurities
+        securities.forEach { security in
+            financeAPI.getQuotesForSymbol(symbol: security.symbol) { [self] result in
+                switch result {
+                case .success(let quote):
+                    portfolio.update(security: security, withPrice: quote.currentPrice)
+                case .failure:
+                    print("could not get quotes")
+                }
+            }
+        }
+    }
+
 }

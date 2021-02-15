@@ -11,16 +11,16 @@ struct Depot: Identifiable, Codable {
     init(id: UUID = UUID(), name: String, initialBalance: Money) {
         self.id = id
         self.name = name
-        self.balance = initialBalance
-        self.cashTransactions = [
+        balance = initialBalance
+        cashTransactions = [
             CashTransaction(date: Date(), amount: initialBalance, kind: .income, beneficiary: "Initial Balance")
         ]
-        self.orderTransactions = []
-        self.securityAllocations = []
+        orderTransactions = []
+        securityAllocations = []
     }
     
     mutating func addCashTransaction(_ transaction: CashTransaction) {
-        self.cashTransactions.append(transaction)
+        cashTransactions.append(transaction)
         switch transaction.kind {
         case .income:
             balance += transaction.amount
@@ -28,9 +28,9 @@ struct Depot: Identifiable, Codable {
             balance -= transaction.amount
         }
     }
-    
+
     mutating func addOrderTransaction(_ transaction: OrderTransaction) {
-        self.orderTransactions.append(transaction)
+        orderTransactions.append(transaction)
         var security = transaction.security
         security.latestPrice = transaction.price
         let securityAllocation = allocation(for: security) ?? SecurityAllocation(amount: 0.0, security: security)
@@ -55,15 +55,19 @@ struct Depot: Identifiable, Codable {
             addCashTransaction(cashTransaction)
         }
     }
-    
+
     mutating func update(security: Security, withPrice price: Money) {
-        for index in 0...securityAllocations.count {
+        if let index = securityAllocations.firstIndex(where: { $0.security == security }) {
             securityAllocations[index].security.latestPrice = price
         }
     }
     
     func allocation(for security: Security) -> SecurityAllocation? {
-        return securityAllocations.first(where: { $0.security == security })
+        securityAllocations.first(where: { $0.security == security })
+    }
+
+    var securities: [Security] {
+        securityAllocations.map { $0.security }
     }
 }
 
@@ -86,7 +90,7 @@ struct SecurityAllocation: Identifiable, Codable, Equatable {
     var id: String { security.symbol }
     
     static func ==(lhs: SecurityAllocation, rhs: SecurityAllocation) -> Bool {
-        return lhs.security == rhs.security && lhs.amount == rhs.amount
+        lhs.security == rhs.security && lhs.amount == rhs.amount
     }
 }
 

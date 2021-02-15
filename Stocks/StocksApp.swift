@@ -8,6 +8,9 @@ struct StocksApp: App {
         WindowGroup {
             PortfolioView()
                 .environmentObject(stateController)
+            .onAppear() {
+                stateController.updateQuotes()
+            }
         }
     }
 }
