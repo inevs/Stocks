@@ -47,7 +47,7 @@ extension DepotView {
                         HStack {
                             Text("\(allocation.amount.string()) \(allocation.security.symbol)")
                             Spacer()
-                            Text("\(allocation.security.latestPrice.string())")
+                            Text("\((allocation.amount * allocation.security.latestPrice).string())")
                         }
                     }
                     Spacer()

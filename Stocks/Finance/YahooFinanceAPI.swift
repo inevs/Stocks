@@ -15,6 +15,25 @@ struct YahooFinanceAPI: FinanceAPIProtocol {
         ]
     }
 
+    func getQuotesForSymbols(symbols: [String], completion: @escaping (Result<[SecurityQuotes], NetworkError>) -> ()) {
+        let queryParameters = [
+            QueryParameter(parameter: "symbols", value: symbols.joined(separator: ","))
+        ]
+        let allQueryParameters = queryParameters + regionParameters
+
+        let url = "https://yahoo-finance-low-latency.p.rapidapi.com/v6/finance/quote"
+        Webservice.shared.loadResource(url: url, headerFields: headerFields, queryParameter: allQueryParameters) { (result: Result<YahooQuoteAPIResponse, NetworkError>) in
+            switch result {
+            case .success(let response):
+                let quotes = response.quoteResponse.result
+                let securityQuotes = quotes.map { SecurityQuotes(symbol: $0.symbol, currentPrice: Money(amount: $0.regularMarketPrice), changePercentage: $0.regularMarketChangePercent, changeAbsolute: Money(amount: $0.regularMarketChange)) }
+                completion(.success(securityQuotes))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     func getQuotesForSymbol(symbol: String, completion: @escaping (Result<SecurityQuotes, NetworkError>) -> ()) {
         let queryParameters = [
             QueryParameter(parameter: "symbols", value: symbol)

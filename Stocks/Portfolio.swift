@@ -44,9 +44,6 @@ struct Portfolio: Codable {
         }
         return securitySet
     }
-
-    mutating func updateQuotes() {
-    }
 }
     
     

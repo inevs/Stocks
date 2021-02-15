@@ -32,14 +32,17 @@ class StateController: ObservableObject {
     func updateQuotes() {
         let financeAPI = FinanceAPI.shared
         let securities = portfolio.allSecurities
-        securities.forEach { security in
-            financeAPI.getQuotesForSymbol(symbol: security.symbol) { [self] result in
-                switch result {
-                case .success(let quote):
-                    portfolio.update(security: security, withPrice: quote.currentPrice)
-                case .failure:
-                    print("could not get quotes")
+        let symbols = securities.map { $0.symbol }
+        financeAPI.getQuotesForSymbols(symbols: symbols) { [self] result in
+            switch result {
+            case .success(let quotes):
+                quotes.forEach { quote in
+                    if let security = securities.first(where: { $0.symbol == quote.symbol }) {
+                        portfolio.update(security: security, withPrice: quote.currentPrice)
+                    }
                 }
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
