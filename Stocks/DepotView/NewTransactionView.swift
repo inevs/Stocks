@@ -73,8 +73,7 @@ extension NewTransactionView {
         
         var body: some View {
             Form {
-                TextField("Date", text: $data.date)
-                    .keyboardType(.numbersAndPunctuation)
+                DatePicker("Date", selection: $data.date, displayedComponents: [.date])
                 TextField("Amount", text: $data.amount)
                 TextField("Beneficiary", text: $data.beneficiary)
                 Picker(selection: $data.transactionType, label: Text("Type")) {
@@ -99,7 +98,7 @@ extension NewTransactionView {
                     TextField("Name", text: $orderData.security.name)
                 }
                 Section(header: Text("Order details")) {
-                    TextField("Date", text: $orderData.date)
+                    DatePicker("Date", selection: $orderData.date, displayedComponents: [.date])
                     TextField("Amount", text: $orderData.amount)
                     TextField("Price", text: $orderData.price)
                     TextField("Fees", text: $orderData.fees)

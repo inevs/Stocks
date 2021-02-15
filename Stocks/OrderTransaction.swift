@@ -31,7 +31,7 @@ struct OrderTransaction: Codable, Identifiable {
 
 extension OrderTransaction {
     struct Data {
-        var date: String
+        var date: Date
         var security: Security.SecurityData
         var amount: String
         var price: String
@@ -40,7 +40,7 @@ extension OrderTransaction {
         var transactionType: OrderTransaction.Kind
         
         init() {
-            date = Date().transactionFormat
+            date = Date()
             security = Security.SecurityData(symbol: "", name: "")
             amount = ""
             price = ""
@@ -52,7 +52,7 @@ extension OrderTransaction {
     
     init(from data: Data, security: Security) {
         self.id = UUID()
-        self.date = Date.from(data.date)
+        self.date = data.date
         self.amount = Decimal(from: data.amount)
         self.kind = data.transactionType
         self.security = security

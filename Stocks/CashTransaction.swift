@@ -40,13 +40,13 @@ struct CashTransaction: Codable, Identifiable {
 
 extension CashTransaction {
     struct Data {
-        var date: String
+        var date: Date
         var amount: String
         var transactionType: CashTransaction.Kind
         var beneficiary: String
         
         init() {
-            self.date = Date().transactionFormat
+            self.date = Date()
             self.amount = ""
             self.transactionType = .income
             self.beneficiary = ""
@@ -55,7 +55,7 @@ extension CashTransaction {
     
     init(from data: Data) {
         self.id = UUID()
-        self.date = Date.from(data.date)
+        self.date = data.date
         self.amount = Money(from: data.amount)
         self.kind = data.transactionType
         self.beneficiary = data.beneficiary
