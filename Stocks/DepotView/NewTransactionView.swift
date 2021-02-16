@@ -75,6 +75,7 @@ extension NewTransactionView {
             Form {
                 DatePicker("Date", selection: $data.date, displayedComponents: [.date])
                 TextField("Amount", text: $data.amount)
+                    .keyboardType(.decimalPad)
                 TextField("Beneficiary", text: $data.beneficiary)
                 Picker(selection: $data.transactionType, label: Text("Type")) {
                     ForEach(CashTransaction.Kind.allCases) { kind in
@@ -100,9 +101,13 @@ extension NewTransactionView {
                 Section(header: Text("Order details")) {
                     DatePicker("Date", selection: $orderData.date, displayedComponents: [.date])
                     TextField("Amount", text: $orderData.amount)
+                        .keyboardType(.decimalPad)
                     TextField("Price", text: $orderData.price)
+                        .keyboardType(.decimalPad)
                     TextField("Fees", text: $orderData.fees)
+                        .keyboardType(.decimalPad)
                     TextField("Tax", text: $orderData.tax)
+                        .keyboardType(.decimalPad)
                 }
                 Section {
                     Picker(selection: $orderData.transactionType, label: Text("Type")) {

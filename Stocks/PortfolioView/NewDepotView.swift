@@ -34,6 +34,7 @@ extension NewDepotView {
                 Section(header: Text("Depot Data")) {
                     TextField("Name", text: $name)
                     TextField("Cash", text: $cash)
+                        .keyboardType(.decimalPad)
                 }
             }
             .listStyle(InsetGroupedListStyle())
