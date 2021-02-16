@@ -33,6 +33,8 @@ extension NewDepotView {
             List {
                 Section(header: Text("Depot Data")) {
                     TextField("Name", text: $name)
+                            .autocapitalization(.none)
+                            .disableAutocorrection(true)
                     TextField("Cash", text: $cash)
                         .keyboardType(.decimalPad)
                 }

@@ -98,6 +98,8 @@ extension NewTransactionView {
                     TextField("Symbol", text: $orderData.security.symbol)
                     TextField("Name", text: $orderData.security.name)
                 }
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
                 Section(header: Text("Order details")) {
                     DatePicker("Date", selection: $orderData.date, displayedComponents: [.date])
                     TextField("Amount", text: $orderData.amount)
