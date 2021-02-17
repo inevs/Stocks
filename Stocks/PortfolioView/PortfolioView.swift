@@ -12,13 +12,12 @@ struct PortfolioView: View {
             NavigationView {
                 NewDepotView()
             }
-            .environmentObject(self.stateController)
-            
+            .environmentObject(stateController)
         }
     }
     
     func deleteDepots(atIndexSet indexSet: IndexSet) {
-        self.stateController.deleteDepots(atIndexSet: indexSet)
+        stateController.deleteDepots(atIndexSet: indexSet)
     }
 }
 
@@ -32,7 +31,11 @@ extension PortfolioView {
             List {
                 ForEach(depots) { depot in
                     NavigationLink(destination: DepotView(depot: depot)) {
-                        Row(depot: depot)
+                        HStack {
+                            Text(depot.name)
+                            Spacer()
+                            Text(depot.currentValue.string())
+                        }
                     }
                 }
                 .onMove(perform: move(fromOffsets:toOffset:))
@@ -49,22 +52,18 @@ extension PortfolioView {
         func move(fromOffsets source: IndexSet, toOffset destination: Int) {
             depots.move(fromOffsets: source, toOffset: destination)
         }
+
+        private func binding(for depot: Depot) -> Binding<Depot> {
+            guard let depotIndex = depots.firstIndex(where: { $0.id == depot.id }) else {
+                fatalError("Can't find depot in portfolio")
+            }
+            return $depots[depotIndex]
+        }
     }
 }
 
 extension PortfolioView.Content {
-    struct Row: View {
-        var depot: Depot
-        
-        var body: some View {
-            HStack {
-                Text(depot.name)
-                Spacer()
-                Text(depot.currentValue.string())
-            }
-        }
-    }
-    
+
     struct TotalRow: View {
         let depots: [Depot]
         
