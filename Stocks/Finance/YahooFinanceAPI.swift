@@ -15,7 +15,7 @@ struct YahooFinanceAPI: FinanceAPIProtocol {
         ]
     }
 
-    func getQuotesForSymbols(symbols: [String], completion: @escaping (Result<[SecurityQuotes], NetworkError>) -> ()) {
+    func getQuotesForSymbols(symbols: [String], completion: @escaping (Result<[SecurityQuote], NetworkError>) -> ()) {
         let queryParameters = [
             QueryParameter(parameter: "symbols", value: symbols.joined(separator: ","))
         ]
@@ -26,7 +26,7 @@ struct YahooFinanceAPI: FinanceAPIProtocol {
             switch result {
             case .success(let response):
                 let quotes = response.quoteResponse.result
-                let securityQuotes = quotes.map { SecurityQuotes(symbol: $0.symbol, currentPrice: Money(amount: $0.regularMarketPrice), changePercentage: $0.regularMarketChangePercent, changeAbsolute: Money(amount: $0.regularMarketChange)) }
+                let securityQuotes = quotes.map { SecurityQuote(symbol: $0.symbol, currentPrice: Money(amount: $0.regularMarketPrice), changePercentage: $0.regularMarketChangePercent, changeAbsolute: Money(amount: $0.regularMarketChange)) }
                 completion(.success(securityQuotes))
             case .failure(let error):
                 completion(.failure(error))
@@ -39,7 +39,11 @@ struct YahooFinanceAPI: FinanceAPIProtocol {
             do {
                 let data = try Data(contentsOf: url)
                 let dict = try PropertyListSerialization.propertyList(from: data, format: nil) as! [String:Any]
-                return dict[name] as? String
+                if let yahooDict = dict["yahoo"] as? [String:String] {
+                    return yahooDict[name]
+                } else {
+                    return nil
+                }
             } catch {
                 print(error)
             }

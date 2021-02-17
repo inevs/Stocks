@@ -31,6 +31,7 @@
 		26D400A825D66876003FD7C5 /* PortfolioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D400A725D66876003FD7C5 /* PortfolioTests.swift */; };
 		26E9522C25B6BF980095EFB2 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9522B25B6BF980095EFB2 /* StorageController.swift */; };
 		360E4181EA4B2B75C4791EF3 /* api-keys.plist.template in Resources */ = {isa = PBXBuildFile; fileRef = 360E46840E52074C7B8E45A0 /* api-keys.plist.template */; };
+		360E450C3E833976E06E15E4 /* AlphaFinanceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E40B0B0EDE7EEDFEF64EE /* AlphaFinanceAPI.swift */; };
 		360E45254EE7C9A016461D5F /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E4CF6AA29FDA1579A2F12 /* WebService.swift */; };
 		360E46557FD088E4E86598C2 /* YahooFinanceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E4FA2B4020C378A97E1B4 /* YahooFinanceAPI.swift */; };
 		360E4ECDD345314D02A8B7DF /* FinanceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E42155272DF8C3B6E34F6 /* FinanceAPI.swift */; };
@@ -83,6 +84,7 @@
 		26C86DE725B2F3A000293024 /* DepotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepotView.swift; sourceTree = "<group>"; };
 		26D400A725D66876003FD7C5 /* PortfolioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTests.swift; sourceTree = "<group>"; };
 		26E9522B25B6BF980095EFB2 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
+		360E40B0B0EDE7EEDFEF64EE /* AlphaFinanceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphaFinanceAPI.swift; sourceTree = "<group>"; };
 		360E42155272DF8C3B6E34F6 /* FinanceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceAPI.swift; sourceTree = "<group>"; };
 		360E46840E52074C7B8E45A0 /* api-keys.plist.template */ = {isa = PBXFileReference; lastKnownFileType = file.template; path = "api-keys.plist.template"; sourceTree = "<group>"; };
 		360E4CF6AA29FDA1579A2F12 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				360E42155272DF8C3B6E34F6 /* FinanceAPI.swift */,
 				360E4FA2B4020C378A97E1B4 /* YahooFinanceAPI.swift */,
 				360E4CF6AA29FDA1579A2F12 /* WebService.swift */,
+				360E40B0B0EDE7EEDFEF64EE /* AlphaFinanceAPI.swift */,
 			);
 			path = Finance;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				360E4ECDD345314D02A8B7DF /* FinanceAPI.swift in Sources */,
 				360E46557FD088E4E86598C2 /* YahooFinanceAPI.swift in Sources */,
 				360E45254EE7C9A016461D5F /* WebService.swift in Sources */,
+				360E450C3E833976E06E15E4 /* AlphaFinanceAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

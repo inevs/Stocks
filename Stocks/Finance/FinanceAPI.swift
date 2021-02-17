@@ -1,6 +1,6 @@
 import Foundation
 
-struct SecurityQuotes {
+struct SecurityQuote {
     let symbol: String
     let currentPrice: Money
     let changePercentage: Decimal
@@ -8,13 +8,13 @@ struct SecurityQuotes {
 }
 
 protocol FinanceAPIProtocol {
-    func getQuotesForSymbols(symbols: [String], completion: @escaping (Result<[SecurityQuotes], NetworkError>)->())
+    func getQuotesForSymbols(symbols: [String], completion: @escaping (Result<[SecurityQuote], NetworkError>)->())
 }
 
 struct FinanceAPI: FinanceAPIProtocol {
-    static var shared: FinanceAPIProtocol = YahooFinanceAPI()
+    static var shared: FinanceAPIProtocol = AlphaFinanceAPI()
 
-    func getQuotesForSymbols(symbols: [String], completion: @escaping (Result<[SecurityQuotes], NetworkError>) -> ()) {
+    func getQuotesForSymbols(symbols: [String], completion: @escaping (Result<[SecurityQuote], NetworkError>) -> ()) {
         Self.shared.getQuotesForSymbols(symbols: symbols, completion: completion)
     }
 
