@@ -9,15 +9,15 @@ struct YahooFinanceAPI: FinanceAPIProtocol {
     }
 
     var headerFields: [HttpHeaderField] {
-        return [
+        [
             HttpHeaderField(field: "X-RapidAPI-Key", value: getKeyFor(name: "api-key") ?? ""),
             HttpHeaderField(field: "X-RapidAPI-Host", value: getKeyFor(name: "api-host") ?? "")
         ]
     }
 
-    func getQuotesForSymbols(symbols: [String], completion: @escaping (Result<[SecurityQuote], NetworkError>) -> ()) {
+    func getQuoteForSymbol(symbol: String, completion: @escaping (Result<SecurityQuote, NetworkError>) -> ()) {
         let queryParameters = [
-            QueryParameter(parameter: "symbols", value: symbols.joined(separator: ","))
+            QueryParameter(parameter: "symbols", value: symbol)
         ]
         let allQueryParameters = queryParameters + regionParameters
 
@@ -27,7 +27,11 @@ struct YahooFinanceAPI: FinanceAPIProtocol {
             case .success(let response):
                 let quotes = response.quoteResponse.result
                 let securityQuotes = quotes.map { SecurityQuote(symbol: $0.symbol, currentPrice: Money(amount: $0.regularMarketPrice), changePercentage: $0.regularMarketChangePercent, changeAbsolute: Money(amount: $0.regularMarketChange)) }
-                completion(.success(securityQuotes))
+                if let securityQuote = securityQuotes.first {
+                    completion(.success(securityQuote))
+                } else {
+                    completion(.failure(.unknown))
+                }
             case .failure(let error):
                 completion(.failure(error))
             }
@@ -50,7 +54,6 @@ struct YahooFinanceAPI: FinanceAPIProtocol {
         }
         return nil
     }
-
 }
 
 fileprivate struct YahooQuoteAPIResponse: Decodable {

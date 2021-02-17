@@ -1,6 +1,7 @@
 import Foundation
 
 struct AlphaFinanceAPI: FinanceAPIProtocol {
+
     var headerFields: [HttpHeaderField] {
         [
             HttpHeaderField(field: "X-RapidAPI-Key", value: getKeyFor(name: "api-key") ?? ""),
@@ -8,29 +9,21 @@ struct AlphaFinanceAPI: FinanceAPIProtocol {
         ]
     }
 
-    func getQuotesForSymbols(symbols: [String], completion: @escaping (Result<[SecurityQuote], NetworkError>) -> ()) {
-        let theGroup = DispatchGroup()
-        var quotes: [SecurityQuote] = []
-
-        symbols.forEach { symbol in
-            theGroup.enter()
-            let queryParameters = [
-                QueryParameter(parameter: "symbol", value: symbol),
-                QueryParameter(parameter: "function", value: "GLOBAL_QUOTE"),
-                QueryParameter(parameter: "datatype", value: "json")
-            ]
-            let url = "https://alpha-vantage.p.rapidapi.com/query"
-            Webservice.shared.loadResource(url: url, headerFields: headerFields, queryParameter: queryParameters) { (result: Result<AlphaQuoteAPIResponse, NetworkError>) in
-                if case .success(let response) = result {
-                    let quote = response.quote.mapToSecuritQuote()
-                    quotes.append(quote)
-                }
-                theGroup.leave()
+    func getQuoteForSymbol(symbol: String, completion: @escaping (Result<SecurityQuote, NetworkError>) -> ()) {
+        let queryParameters = [
+            QueryParameter(parameter: "symbol", value: symbol),
+            QueryParameter(parameter: "function", value: "GLOBAL_QUOTE"),
+            QueryParameter(parameter: "datatype", value: "json")
+        ]
+        let url = "https://alpha-vantage.p.rapidapi.com/query"
+        Webservice.shared.loadResource(url: url, headerFields: headerFields, queryParameter: queryParameters) { (result: Result<AlphaQuoteAPIResponse, NetworkError>) in
+            switch result {
+            case .success(let response):
+                let quote = response.quote.mapToSecuritQuote()
+                completion(.success(quote))
+            case .failure(let error):
+                completion(.failure(error))
             }
-        }
-
-        theGroup.notify(queue: .main) {
-            completion(.success(quotes))
         }
     }
 
