@@ -52,7 +52,7 @@ struct NewTransactionView: View {
     func addTransaction() {
         switch selectedScreen {
         case .cash:
-            let transaction = CashTransaction(from: self.cashTransactionData)
+            let transaction = CashTransaction(from: cashTransactionData)
             stateController.addCashTransaction(transaction, toDepot: depot)
         case .order:
             let security = Security(symbol: self.orderTransactionData.security.symbol, name: self.orderTransactionData.security.name)
@@ -94,12 +94,13 @@ extension NewTransactionView {
         
         var body: some View {
             Form {
-                Section(header: Text("Security")) {
-                    TextField("Symbol", text: $orderData.security.symbol)
-                    TextField("Name", text: $orderData.security.name)
+                Section() {
+                    NavigationLink(destination: SearchSecurityView(orderData: $orderData)) { Text("Search") }
                 }
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
+                Section(header: Text("Security")) {
+                    Text(orderData.security.symbol)
+                    Text(orderData.security.name)
+                }
                 Section(header: Text("Order details")) {
                     DatePicker("Date", selection: $orderData.date, displayedComponents: [.date])
                     TextField("Amount", text: $orderData.amount)

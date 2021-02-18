@@ -17,5 +17,4 @@ struct FinanceAPI: FinanceAPIProtocol {
     func getQuoteForSymbol(symbol: String, completion: @escaping (Result<SecurityQuote, NetworkError>) -> ()) {
         Self.shared.getQuoteForSymbol(symbol: symbol, completion: completion)
     }
-
 }
