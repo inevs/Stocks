@@ -2,24 +2,29 @@ import SwiftUI
 
 struct SearchSecurityView: View {
     @Binding var orderData: OrderTransaction.Data
-    @State var searchResult: [SearchSecurityResult] = []
+    @State var searchResult: [SearchResult] = []
+    let financeAPI = FinanceAPI.shared
     
     var body: some View {
         Content(searchResult: searchResult, searchTextChange: searchTextChange(text:))
     }
     
     func searchTextChange(text: String) {
-        searchResult = [
-            SearchSecurityResult(symbol: "AAPL", name: "Apple"),
-            SearchSecurityResult(symbol: "APC", name: "Apple Xetra"),
-        ]
+        financeAPI.searchSecurities(query: text) { result in
+            switch result {
+            case .success(let matches):
+                searchResult = matches
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 
 extension  SearchSecurityView {
     struct Content: View {
         @State var searchText = ""
-        var searchResult: [SearchSecurityResult]
+        var searchResult: [SearchResult]
         var searchTextChange: (String) -> Void
 
         var body: some View {
@@ -44,8 +49,8 @@ struct SearchSecurityView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             SearchSecurityView.Content(searchResult: [
-                SearchSecurityResult(symbol: "AAPL", name: "Apple"),
-                SearchSecurityResult(symbol: "APC", name: "Apple Xetra"),
+                SearchResult(symbol: "AAPL", name: "Apple"),
+                SearchResult(symbol: "APC", name: "Apple Xetra"),
             ], searchTextChange: {_ in })
         }
     }

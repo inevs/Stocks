@@ -38,6 +38,26 @@ struct YahooFinanceAPI: FinanceAPIProtocol {
         }
     }
 
+    func searchSecurities(query: String, completion: @escaping (Result<[SearchResult], NetworkError>) -> Void) {
+        let queryParameters = [
+            QueryParameter(parameter: "query", value: query)
+        ]
+        let allQueryParameters = queryParameters + regionParameters
+
+        let url = "https://yahoo-finance-low-latency.p.rapidapi.com/v6/finance/autocomplete"
+        Webservice.shared.loadResource(url: url, headerFields: headerFields, queryParameter: allQueryParameters) { (result: Result<YahooSearchAPIResponse, NetworkError>) in
+            switch result {
+            case .success(let response):
+                let results = response.resultSet.results.map {
+                    $0.convertToSearchResult()
+                }
+                completion(.success(results))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
     func getKeyFor(name: String) -> String? {
         if let url = Bundle.main.url(forResource: "api-keys", withExtension: "plist") {
             do {
@@ -71,5 +91,36 @@ struct YahooQuote: Decodable {
     let financialCurrency: String
     let regularMarketChange: Decimal
     let regularMarketChangePercent: Decimal
+}
+
+fileprivate struct YahooSearchAPIResponse: Decodable {
+    let resultSet: ResultSet
+
+    enum CodingKeys: String, CodingKey {
+        case resultSet = "ResultSet"
+    }
+
+    struct ResultSet: Decodable {
+        let query: String
+        let results: [Result]
+
+        enum CodingKeys: String, CodingKey {
+            case query = "Query"
+            case results = "Result"
+        }
+
+        struct Result: Decodable {
+            let exch: String
+            let exchDisp: String
+            let name: String
+            let symbol: String
+            let type: String
+            let typeDisp: String
+
+            func convertToSearchResult() -> SearchResult {
+                SearchResult(symbol: symbol, name: name)
+            }
+        }
+    }
 }
 
